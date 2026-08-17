@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Operação — Redes do Instituto Virtudes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+:root{
+  --ink:#22304A; --paper:#FBFAF6; --panel:#F0F3EF; --panel2:#EEF1F6;
+  --verde:#2F7A63; --verde-esc:#1E5245; --verde-claro:#E4EFEA;
+  --ouro:#B98A1F; --ouro-claro:#F6EED8; --coral:#B94A32; --coral-claro:#F8E8E3;
+  --azul-claro:#E3E9F4; --linha:#DDE3DC; --cinza:#5C6672;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,Segoe UI,Roboto,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;font-size:16px}
+.wrap{max-width:880px;margin:0 auto;padding:0 22px}
+h1,h2,h3,h4,.serif{font-family:'Fraunces',Georgia,serif}
+h2{font-size:2rem;line-height:1.2;margin:0 0 6px}
+h3{font-size:1.35rem;margin:38px 0 12px;color:var(--verde-esc)}
+h4{font-size:1.08rem;margin:26px 0 8px}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 16px 22px}
+li{margin-bottom:7px}
+a{color:var(--verde-esc)}
+strong{font-weight:600}
+
+/* ===== Capa ===== */
+.capa{background:var(--ink);color:#F4F1E8;padding:70px 0 56px;position:relative;overflow:hidden}
+.capa::after{content:"";position:absolute;right:-90px;top:-90px;width:340px;height:340px;border-radius:50%;border:1.5px solid rgba(244,241,232,.18)}
+.capa::before{content:"";position:absolute;right:30px;top:150px;width:150px;height:150px;border-radius:50%;border:1.5px solid rgba(185,138,31,.5)}
+.capa .eyebrow{letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:#C9A75A;margin-bottom:18px;font-weight:600}
+.capa h1{font-size:clamp(2.1rem,5.5vw,3.4rem);line-height:1.08;font-weight:600;max-width:640px}
+.capa h1 em{font-style:italic;color:#8FC3AF}
+.capa .sub{margin-top:20px;max-width:560px;color:#C7CBD6;font-size:1.02rem}
+.capa .meta{margin-top:34px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#8A93A6}
+
+/* ===== Sumário ===== */
+.toc{background:var(--panel);border-bottom:1px solid var(--linha);padding:30px 0}
+.toc h2{font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);font-family:'Inter';font-weight:600;margin-bottom:16px}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px 22px}
+.toc a{display:flex;gap:10px;text-decoration:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:.92rem}
+.toc a:hover{background:#fff}
+.toc .n{font-family:'Fraunces',serif;color:var(--verde);font-weight:700;min-width:26px}
+
+/* ===== Módulos ===== */
+.mod{padding:58px 0 30px;border-bottom:1px solid var(--linha)}
+.mod-head{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+.mod-num{font-family:'Fraunces',serif;font-size:3.4rem;font-weight:700;color:var(--verde);line-height:1;opacity:.9}
+.mod-nivel{display:inline-block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:99px;margin-bottom:14px}
+.niv-ini{background:var(--verde-claro);color:var(--verde-esc)}
+.niv-int{background:var(--azul-claro);color:#2C4A80}
+.niv-av{background:#EFE4F2;color:#6B3A7A}
+.niv-todos{background:var(--ouro-claro);color:#7A5A10}
+.lead{font-size:1.06rem;color:#3A4557;max-width:700px}
+
+/* ===== Badges de confiança ===== */
+.b{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:5px;vertical-align:middle;white-space:nowrap}
+.b-fato{background:var(--verde-esc);color:#fff}
+.b-bench{background:#2C4A80;color:#fff}
+.b-est{background:var(--ouro);color:#fff}
+.b-conf{background:var(--coral);color:#fff}
+
+/* ===== Ficha de estudo (assinatura) ===== */
+.ficha{background:#fff;border:1px solid var(--linha);border-left:6px solid var(--verde);border-radius:12px;padding:22px 24px;margin:22px 0;box-shadow:0 1px 3px rgba(34,48,74,.05)}
+.ficha.ouro{border-left-color:var(--ouro)}
+.ficha.coral{border-left-color:var(--coral)}
+.ficha.azul{border-left-color:#2C4A80}
+.ficha h4{margin-top:0}
+.ficha-tag{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza);font-weight:700;margin-bottom:6px}
+
+/* ===== Marca em foco ===== */
+.marca{display:flex;gap:18px;background:linear-gradient(135deg,#FFFDF8,#F6F3EA);border:1px solid #E8E2CF;border-radius:12px;padding:20px 22px;margin:20px 0;align-items:flex-start}
+.marca .logo{flex:0 0 52px;height:52px;border-radius:50%;background:var(--ink);color:#F4F1E8;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700}
+.marca h5{font-family:'Inter';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:4px;font-weight:700}
+.marca .nome{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;margin-bottom:6px}
+.marca p{margin-bottom:8px;font-size:.95rem}
+.marca .licao{font-size:.9rem;background:#fff;border-radius:8px;padding:10px 14px;border:1px dashed #D8CFAF}
+.marca .licao strong{color:var(--verde-esc)}
+
+/* ===== Certo / Errado ===== */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+@media(max-width:640px){.duo{grid-template-columns:1fr}}
+.errado,.certo{border-radius:12px;padding:18px 20px;font-size:.95rem}
+.errado{background:var(--coral-claro);border:1px solid #E7C4B9}
+.certo{background:var(--verde-claro);border:1px solid #C4DACF}
+.errado .rot,.certo .rot{font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:8px}
+.errado .rot{color:var(--coral)}
+.certo .rot{color:var(--verde-esc)}
+
+/* ===== Funil ===== */
+.funil{margin:26px auto;max-width:560px;text-align:center}
+.funil .f{color:#fff;padding:13px 8px;margin:0 auto 5px;font-size:.86rem;font-weight:600;border-radius:6px}
+.funil .f small{display:block;font-weight:400;opacity:.85;font-size:.76rem}
+.f1{width:100%;background:var(--verde)}
+.f2{width:78%;background:#3E6B8C}
+.f3{width:56%;background:#2C4A80}
+.f4{width:36%;background:var(--ink)}
+.f5{width:24%;background:var(--ouro)}
+.funil .seta{color:var(--cinza);font-size:.78rem;margin:2px 0 7px}
+
+/* ===== Jornada timeline ===== */
+.jornada{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:26px 0;counter-reset:et}
+@media(max-width:700px){.jornada{grid-template-columns:1fr}}
+.etapa{position:relative;padding:16px 12px 12px;border-top:4px solid var(--verde);background:#fff;border-right:1px solid var(--linha);font-size:.85rem}
+.etapa:last-child{border-right:none;border-top-color:var(--ouro)}
+.etapa::before{counter-increment:et;content:counter(et);position:absolute;top:-15px;left:12px;width:26px;height:26px;border-radius:50%;background:var(--verde);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:.85rem}
+.etapa:last-child::before{background:var(--ouro)}
+.etapa b{display:block;margin-bottom:4px;font-size:.92rem}
+.etapa i{display:block;color:var(--cinza);font-size:.8rem;margin-top:6px}
+
+/* ===== Persona card ===== */
+.persona{display:flex;gap:20px;background:#fff;border:1px solid var(--linha);border-radius:14px;padding:24px;margin:22px 0;box-shadow:0 2px 8px rgba(34,48,74,.06)}
+@media(max-width:600px){.persona{flex-direction:column}}
+.persona .avatar{flex:0 0 74px;height:74px;border-radius:50%;background:var(--verde-claro);display:flex;align-items:center;justify-content:center;font-size:2rem}
+.persona .dados{font-size:.93rem}
+.persona .nome{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:600}
+.persona .chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.persona .chips span{background:var(--panel);border:1px solid var(--linha);border-radius:99px;padding:3px 11px;font-size:.76rem}
+
+/* ===== Tabelas ===== */
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.9rem;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(34,48,74,.05)}
+th{background:var(--ink);color:#F4F1E8;text-align:left;padding:11px 13px;font-weight:600;font-size:.82rem;letter-spacing:.03em}
+td{padding:10px 13px;border-bottom:1px solid var(--linha);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#FAFBF9}
+
+/* ===== Fórmula ===== */
+.formula{background:var(--ink);color:#F4F1E8;border-radius:12px;padding:22px;text-align:center;margin:22px 0;font-family:'Fraunces',serif;font-size:1.15rem}
+.formula small{display:block;font-family:'Inter';font-size:.78rem;color:#9AA3B5;margin-top:10px}
+.formula .gold{color:#D8B45A}
+
+/* ===== Checklist ===== */
+.check{background:#fff;border:2px solid var(--verde);border-radius:14px;padding:22px 26px;margin:24px 0}
+.check h4{margin-top:0;color:var(--verde-esc)}
+.check ol{margin-left:0;list-style:none}
+.check li{padding-left:34px;position:relative;margin-bottom:10px}
+.check li::before{content:"";position:absolute;left:0;top:3px;width:19px;height:19px;border:2px solid var(--verde);border-radius:5px;background:#fff}
+
+/* ===== Dica ===== */
+.dica{background:var(--ouro-claro);border-radius:10px;padding:14px 18px;margin:16px 0;font-size:.93rem;border:1px solid #E5D6A8}
+.dica::before{content:"💡 ";font-style:normal}
+
+/* ===== Rodolfo box ===== */
+.rodolfo{background:var(--coral-claro);border:1px solid #E7C4B9;border-radius:10px;padding:14px 18px;margin:16px 0;font-size:.93rem}
+.rodolfo::before{content:"🔎 Validar com o Rodolfo — ";font-weight:700;color:var(--coral)}
+
+/* ===== Canais grid ===== */
+.canais{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}
+.canal{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:16px 14px;text-align:center;font-size:.84rem}
+.canal .ico{font-size:1.7rem;display:block;margin-bottom:6px}
+.canal b{display:block;font-size:.95rem;margin-bottom:4px}
+.canal.star{border:2px solid var(--ouro);background:#FFFDF4;position:relative}
+.canal.star::after{content:"PRIORIDADE";position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--ouro);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.1em;padding:2px 9px;border-radius:99px}
+
+.video{background:var(--panel2);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.9rem}
+.video::before{content:"📺 ";}
+footer{padding:44px 0 60px;color:var(--cinza);font-size:.85rem;text-align:center}
+@media print{.capa::after,.capa::before{display:none}}
+
+/* ===== Arquétipos / princípios ===== */
+.princ{background:var(--ink);color:#F4F1E8;border-radius:12px;padding:20px 24px;margin:22px 0;border-left:6px solid var(--ouro)}
+.princ .tag{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#D8B45A;font-weight:700;margin-bottom:8px}
+.princ p{margin:0;font-size:.97rem;color:#E8E6DF}
+.princ p+p{margin-top:8px}
+
+/* ===== Conflito editorial ===== */
+.conflito{background:#FFF7F4;border:2px dashed var(--coral);border-radius:12px;padding:18px 22px;margin:22px 0}
+.conflito .tag{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);font-weight:700;margin-bottom:6px}
+.conflito p{font-size:.94rem}
+.conflito p:last-child{margin-bottom:0}
+
+/* ===== Vídeo tutorial ===== */
+.tut{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:22px 24px;margin:26px 0;box-shadow:0 2px 8px rgba(34,48,74,.06)}
+.tut>h4{margin-top:0;font-size:1.15rem;color:var(--verde-esc)}
+.embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:var(--ink);margin:14px 0}
+.embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.embed-falta{position:relative;padding:34px 22px;border-radius:10px;background:var(--panel2);border:2px dashed #9AA9C4;text-align:center;margin:14px 0;font-size:.9rem}
+.embed-falta b{display:block;font-size:1rem;margin-bottom:6px}
+details.transcr{border:1px solid var(--linha);border-radius:10px;background:var(--panel);padding:0;margin:14px 0}
+details.transcr summary{cursor:pointer;padding:11px 16px;font-size:.86rem;font-weight:600;letter-spacing:.02em;color:var(--verde-esc);list-style:none}
+details.transcr summary::-webkit-details-marker{display:none}
+details.transcr summary::before{content:"▸ ";font-weight:700}
+details.transcr[open] summary::before{content:"▾ "}
+details.transcr .corpo{padding:4px 18px 16px;font-size:.86rem;color:#3A4557;border-top:1px solid var(--linha)}
+details.transcr .corpo p{margin:0 0 9px}
+details.transcr .ts{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.74rem;color:var(--cinza);background:#fff;border:1px solid var(--linha);border-radius:4px;padding:1px 5px;margin-right:7px}
+
+/* ===== Passos numerados ===== */
+.passos{counter-reset:pz;margin:18px 0 4px;list-style:none}
+.passos>li{counter-increment:pz;position:relative;padding-left:42px;margin-bottom:14px}
+.passos>li::before{content:counter(pz);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:50%;background:var(--verde-claro);border:1.5px solid var(--verde);color:var(--verde-esc);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:.9rem}
+
+/* ===== Timeline de marcadores ===== */
+.linhatempo{background:#1B2436;border-radius:12px;padding:22px 20px 16px;margin:22px 0;color:#D6DCE8}
+.lt-faixa{position:relative;height:52px;background:linear-gradient(180deg,#3C5170,#2C3E58);border-radius:6px;border:1.5px solid #56708F;margin:26px 0 8px}
+.lt-m{position:absolute;top:-22px;width:0;height:0;transform:translateX(-50%)}
+.lt-m i{display:block;width:13px;height:15px;transform:translateX(-50%);border-radius:2px 2px 6px 6px}
+.lt-m em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-family:ui-monospace,monospace;font-size:.62rem;color:#9FB0C9;white-space:nowrap}
+.lt-m.az i{background:#3B82F6}
+.lt-m.vm i{background:#DC2626}
+.lt-m span{position:absolute;top:24px;left:50%;width:1.5px;height:52px;background:currentColor;opacity:.55;transform:translateX(-50%)}
+.lt-m.az span{color:#3B82F6}
+.lt-m.vm span{color:#DC2626}
+.lt-leg{display:flex;gap:20px;flex-wrap:wrap;font-size:.8rem;margin-top:14px}
+.lt-leg>b{display:inline-flex;align-items:center;gap:7px;font-weight:500;white-space:normal}
+.lt-leg>b strong{font-weight:700;color:#fff}
+.lt-leg>b::before{content:"";width:12px;height:14px;border-radius:2px 2px 6px 6px;display:inline-block}
+.lt-leg>b.az::before{background:#3B82F6}
+.lt-leg>b.vm::before{background:#DC2626}
+
+/* ===== Teclas / valores ===== */
+kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;background:#fff;border:1px solid #C3CBD6;border-bottom-width:2px;border-radius:5px;padding:1px 7px;color:var(--ink)}
+.valores{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:18px 0}
+.val{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:12px 14px;text-align:center}
+.val b{display:block;font-family:'Fraunces',serif;font-size:1.5rem;color:var(--verde-esc);line-height:1.1}
+.val span{font-size:.78rem;color:var(--cinza);display:block;margin-top:4px}
+
+/* ===== Referência visual ===== */
+.refvis{display:flex;gap:22px;align-items:flex-start;background:var(--panel);border:1px solid var(--linha);border-radius:12px;padding:20px;margin:22px 0}
+@media(max-width:620px){.refvis{flex-direction:column;align-items:center}}
+.refvis img{width:190px;border-radius:10px;border:1px solid var(--linha);flex:0 0 auto}
+.refvis .txt{font-size:.9rem}
+
+
+/* ===== Alertão ===== */
+.alertao{background:#FFF9E8;border:2px solid var(--ouro);border-radius:14px;padding:22px 24px;margin:24px 0;box-shadow:0 2px 10px rgba(185,138,31,.12)}
+.alertao .tag{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#8A6410;font-weight:700;margin-bottom:10px}
+.alertao p{font-size:.97rem}
+.alertao p:last-child{margin-bottom:0}
+.alertao.verde{background:#EFF6F2;border-color:var(--verde)}
+.alertao.verde .tag{color:var(--verde-esc)}
+.alertao .ruim{background:#F8E0DA;border-radius:5px;padding:1px 7px;text-decoration:line-through;color:#8A4432}
+.alertao .fala{background:#fff;border:1px solid #E5D6A8;border-radius:10px;padding:13px 17px;font-size:1rem;margin:12px 0}
+.alertao.verde .fala{border-color:#C4DACF}
+
+/* ===== Print de configuração ===== */
+.config{display:flex;gap:22px;align-items:flex-start;background:#fff;border:1px solid var(--linha);border-radius:12px;padding:20px;margin:20px 0}
+@media(max-width:620px){.config{flex-direction:column;align-items:center}}
+.config img{width:270px;border-radius:10px;border:1px solid var(--linha);flex:0 0 auto}
+.config .txt{font-size:.93rem}
+
+
+/* ===== Paleta ===== */
+.paleta{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin:22px 0}
+.cor{border:1px solid var(--linha);border-radius:12px;overflow:hidden;background:#fff;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+.cor:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(34,48,74,.12)}
+.cor .amostra{height:86px;display:flex;align-items:flex-end;justify-content:flex-end;padding:8px 10px}
+.cor .amostra span{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;letter-spacing:.04em;background:rgba(255,255,255,.92);color:#050D14;border-radius:5px;padding:2px 7px}
+.cor .amostra.claro span{background:rgba(5,13,20,.82);color:#fff}
+.cor .info{padding:11px 13px}
+.cor .info b{display:block;font-size:.92rem;color:var(--ink);line-height:1.3}
+.cor .info em{display:block;font-style:normal;font-size:.79rem;color:var(--cinza);margin-top:3px}
+.copiado{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 18px;border-radius:999px;font-size:.85rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:99}
+.copiado.on{opacity:1}
+
+
+/* ===== Cartão de vídeo (link para o YouTube) ===== */
+.ytcard{display:flex;align-items:center;gap:18px;text-decoration:none;background:linear-gradient(135deg,#1B2436,#2C3E58);border-radius:12px;padding:20px 22px;margin:14px 0;border:1px solid #3C5170;transition:transform .12s ease,box-shadow .12s ease,border-color .12s}
+.ytcard:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(27,36,54,.28);border-color:#6E88A8}
+.ytcard .play{flex:0 0 auto;width:54px;height:54px;border-radius:50%;background:#E23A2E;position:relative;box-shadow:0 2px 10px rgba(226,58,46,.4)}
+.ytcard .play::after{content:"";position:absolute;top:50%;left:52%;transform:translate(-50%,-50%);border-left:17px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.ytcard .tx{display:block;min-width:0}
+.ytcard .tx b{display:block;color:#F4F1E8;font-family:'Fraunces',serif;font-size:1.1rem;line-height:1.25}
+.ytcard .tx em{display:block;font-style:normal;color:#B8C6DA;font-size:.88rem;margin-top:4px}
+.ytcard .tx small{display:block;color:#8FA3BE;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;margin-top:8px;font-weight:600}
+@media(max-width:520px){.ytcard{flex-direction:column;text-align:center;gap:12px}}
+
+</style>
+</head>
+<body>
+
+<header class="capa">
+  <div class="wrap">
+    <p class="eyebrow">Instituto Virtudes · Eduardo Casarotto</p>
+    <h1>Guia de <em>Operação</em> das Redes</h1>
+    <p class="sub">O passo a passo do seu dia a dia: editar os vídeos, publicar, responder comentários e DMs, postar os stories e entregar o relatório da semana. Feito para ser seguido, não decorado.</p>
+    <p class="meta">Versão 5.0 · Agosto 2026 · Uso interno · Para: Giulia</p>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <h2>Sumário</h2>
+    <div class="toc-grid">
+      <a href="#m1"><span class="n">1</span> O seu trabalho em 5 frentes</a>
+      <a href="#m2"><span class="n">2</span> Com quem estamos falando</a>
+      <a href="#m3"><span class="n">3</span> Linguagem da Virtologia ★</a>
+      <a href="#m4"><span class="n">4</span> Responder comentários</a>
+      <a href="#m5"><span class="n">5</span> Responder DMs</a>
+      <a href="#m6"><span class="n">6</span> Stories</a>
+      <a href="#m7"><span class="n">7</span> Onde e quando publicar</a>
+      <a href="#m8"><span class="n">8</span> Editar os vídeos (CapCut) ★</a>
+      <a href="#m9"><span class="n">9</span> Relatório semanal</a>
+      <a href="#m10"><span class="n">10</span> Rotina: dia, semana, mês</a>
+      <a href="#m11"><span class="n">11</span> Livros e preços</a>
+      <a href="#m12"><span class="n">12</span> Paleta de cores</a>
+    </div>
+  </div>
+</nav>
+
+<section class="mod" id="m1">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">1</span><h2>O seu trabalho em 5 frentes</h2></div>
+    <p class="lead">Este guia não ensina marketing. Ele descreve <b>o que fazer, em que ordem e com que critério</b>. A maior parte do material chega pronto até você — o que você cria de fato são as <b>respostas a comentários e DMs</b>.</p>
+
+    <table>
+      <tr><th>Frente</th><th>O que chega pronto para você</th><th>O que é seu</th></tr>
+      <tr><td><b>1. Editar vídeos</b></td><td>O link do vídeo bruto no Drive + a lista de timestamps de corte + a headline</td><td>Executar os cortes e aplicar o padrão visual da casa (Módulo 8)</td></tr>
+      <tr><td><b>2. Publicar</b></td><td>A legenda de cada post e as imagens prontas</td><td>Postar nos perfis certos, na frequência certa (Módulo 7)</td></tr>
+      <tr><td><b>3. Responder comentários</b></td><td>—</td><td><b>Tudo.</b> É aqui que está o seu maior valor (Módulo 4)</td></tr>
+      <tr><td><b>4. Responder DMs</b></td><td>—</td><td><b>Tudo.</b> É o canal que mais aproxima a pessoa do Instituto (Módulo 5)</td></tr>
+      <tr><td><b>5. Stories</b></td><td>A indicação de quais stories postar</td><td>Executar com a técnica do curso <em>Stories 10x</em> (Módulo 6)</td></tr>
+    </table>
+
+    <div class="ficha azul">
+      <div class="ficha-tag">Onde tudo chega</div>
+      <p style="margin:0">Todo domingo, os posts da semana aparecem em uma <b>nova guia do documento dos posts</b> — timestamps, arquivo bruto do vídeo no Drive, imagens prontas e as legendas. <a href="https://docs.google.com/document/d/1fJfaR2RKmOWn6s9TUEspxxF4owSF-oGJQQqrCK8QF5o/edit?tab=t.0" target="_blank" rel="noopener noreferrer"><b>Abrir o documento</b></a> · detalhes no Módulo 7.1.</p>
+    </div>
+
+    <div class="ficha">
+      <div class="ficha-tag">A regra que organiza tudo</div>
+      <p style="margin:0"><b>Legenda, timestamps e pauta chegam prontos. Resposta é sua.</b> Você não precisa inventar conteúdo nem decidir linha editorial — isso vem do Eduardo e do Rodolfo. Você precisa executar com precisão e <b>conversar bem com quem interage</b>.</p>
+    </div>
+
+    <h3>1.1 O que você nunca decide sozinha</h3>
+    <ul>
+      <li>Preço de livro, de formação ou de qualquer produto → <b>tabela oficial</b> (Módulo 11).</li>
+      <li>O que entra e o que sai de um vídeo → <b>a lista de timestamps</b> já traz isso decidido.</li>
+      <li>O texto de uma legenda → chega pronto, <b>copiar e colar</b>, sem reescrever.</li>
+      <li>Qualquer afirmação teórica de que você não tem certeza → <b>pergunte antes de responder</b>. Segurar uma resposta por uma hora não custa nada; responder errado custa credibilidade.</li>
+    </ul>
+
+  </div>
+</section>
+
+<section class="mod" id="m2">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">2</span><h2>Com quem estamos falando</h2></div>
+    <p class="lead">Você não precisa deste módulo para editar vídeo. Precisa dele para <b>responder</b>. Saber quem é a pessoa do outro lado muda completamente o tom da sua resposta.</p>
+
+    <div class="ficha">
+      <div class="ficha-tag">Em uma frase</div>
+      <p style="margin:0">Nosso público é <b>leitor e pensador</b>, não consumidor de conteúdo motivacional. Chega até nós por <b>esgotamento</b> — cansou do que não resolve — e decide devagar, por convicção. <b>Quanto mais óbvia a tentativa de venda, menor a confiança.</b></p>
+    </div>
+
+    <h3>2.1 As três pessoas que aparecem nos comentários e nas DMs</h3>
+
+    <div class="persona">
+      <div class="avatar">🩺</div>
+      <div class="dados">
+        <div class="nome">O Clínico em Ruptura</div>
+        <div class="chips"><span>Psicólogo · psiquiatra · psicanalista</span><span>30–60 anos</span><span>Já formado e atuando</span></div>
+        <p><b>Como você reconhece:</b> usa vocabulário técnico, cita a própria formação, faz perguntas específicas sobre teoria, às vezes questiona com ceticismo.</p>
+        <p><b>O que sente:</b> que a formação dele não entrega a transformação profunda que esperava; que gerencia sintomas sem chegar à causa.</p>
+        <p><b>O que teme:</b> que isso seja pseudociência repaginada e que se associar a nós arranhe a reputação dele.</p>
+        <p style="margin:0"><b>Como responder:</b> de igual para igual, com densidade. Enquadre a Virtologia como <b>avanço e integração</b>, nunca como negação do que ele já sabe. Ceticismo dele não é ataque — é o comportamento normal desse perfil.</p>
+      </div>
+    </div>
+
+    <div class="persona">
+      <div class="avatar">🧭</div>
+      <div class="dados">
+        <div class="nome">O Buscador Vocacional</div>
+        <div class="chips"><span>Sem formação clínica prévia</span><span>Vem de outra área</span><span>Quer se formar</span></div>
+        <p><b>Como você reconhece:</b> pergunta se pode fazer a formação sem ser psicólogo, se tem validade, se dá para trabalhar com isso.</p>
+        <p><b>O que sente:</b> vocação. A recusa de virar “mais um” — nem terapeuta convencional, nem coach de palco.</p>
+        <p><b>O que teme:</b> investir em algo sem reconhecimento; ser confundido com coaching.</p>
+        <p style="margin:0"><b>Como responder:</b> com clareza sobre legitimidade e seriedade. Este perfil precisa de <b>informação concreta</b> — encaminhe para a DM e para o material do site.</p>
+      </div>
+    </div>
+
+    <div class="persona">
+      <div class="avatar">🏛️</div>
+      <div class="dados">
+        <div class="nome">O Agente de Humanização</div>
+        <div class="chips"><span>Sistema prisional</span><span>Saúde e oncologia</span><span>Segurança pública</span><span>Gestão</span></div>
+        <p><b>Como você reconhece:</b> fala em nome de uma instituição, pergunta sobre aplicação, projetos, parcerias, resultados em escala.</p>
+        <p><b>O que busca:</b> impacto real e mensurável, que se sustente em relatório.</p>
+        <p style="margin:0"><b>Como responder:</b> com sobriedade institucional e <b>sem improvisar</b>. Contato institucional é assunto do Eduardo e do Rodolfo — não improvise resposta sobre parceria, projeto ou convite institucional.</p>
+      </div>
+    </div>
+
+    <h3>2.2 O que esse público recusa</h3>
+    <div class="duo">
+      <div class="certo"><span class="rot">✅ Respeita</span>
+        <ul style="margin-left:16px;margin-bottom:0">
+          <li>Densidade, rigor, explicação de verdade</li>
+          <li>Texto e vídeo longos — lê e assiste até o fim</li>
+          <li>Quem responde de igual para igual</li>
+          <li>Fontes e credenciais verificáveis</li>
+        </ul>
+      </div>
+      <div class="errado"><span class="rot">❌ Rejeita</span>
+        <ul style="margin-left:16px;margin-bottom:0">
+          <li>Autoajuda rasa e “motivacional”</li>
+          <li>Promessa de mudança rápida</li>
+          <li>Urgência e escassez fabricadas</li>
+          <li>Linguagem de coach e de influenciador</li>
+        </ul>
+      </div>
+    </div>
+    <div class="dica"><b>Traduzindo para a sua resposta:</b> nunca escreva com euforia, emoji em excesso, caixa alta ou promessa. <b>O respeito intelectual é o principal argumento.</b> Uma resposta calma e bem explicada converte mais do que dez frases de entusiasmo.</div>
+
+    <h3>2.3 O Instagram é um currículo, não um placar</h3>
+    <p>O número de seguidores <b>não é a nossa métrica</b>. Autoridades e profissionais entram no perfil depois de uma reunião ou palestra para conferir com quem estivemos e o que construímos. Por isso os registros institucionais — palestras, reuniões oficiais, eventos — são conteúdo estratégico, não foto de vaidade.</p>
+    <p><b>Para você:</b> quando publicar um registro institucional, trate com o mesmo cuidado de um post de conteúdo. E, no relatório semanal, não se assuste se um post desses tiver menos curtidas — ele não existe para curtida.</p>
+  </div>
+</section>
+
+<section class="mod" id="m3">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">3</span><h2>Linguagem da Virtologia</h2></div>
+    <span class="mod-nivel niv-todos">O módulo mais importante do guia</span>
+    <p class="lead">Você pode errar o horário de um post. <b>Não pode errar terminologia nem fazer promessa clínica.</b> Erro aqui tem custo reputacional e potencialmente legal — e vale tanto para legenda quanto para resposta de comentário e de DM.</p>
+
+    <h3>3.1 A fonte da verdade</h3>
+    <div class="ficha">
+      <div class="ficha-tag">Regra nº 1</div>
+      <p style="margin:0">Tudo o que você escrever precisa estar alinhado à <b><em>última edição do Fundamentos da Virtologia em revisão/em uso</em></b>. Nunca cite número de edição em material público. Se um post divergir do livro, o livro prevalece. Confirme com o Rodolfo qual edição está vigente.</p>
+    </div>
+
+    <h3>3.2 Termos oficiais — escreva exatamente assim</h3>
+    <table>
+      <tr><th>✅ Termo oficial</th><th>❌ Nunca usar</th><th>Observação</th></tr>
+      <tr><td><b>51 Necessidades Humanas</b></td><td>Qualquer outro número</td><td>São <b>51</b>. Número confirmado — pode citar com segurança.</td></tr>
+      <tr><td><b>33 Virtudes</b></td><td>—</td><td></td></tr>
+      <tr><td><b>Leis da Vida (LV)</b></td><td>“leis do universo”</td><td></td></tr>
+      <tr><td><b>Lei do Fluxo: PRF = E × I × PS × FA × PO × LV</b></td><td>Versões incompletas da fórmula</td><td>Se for citar, cite inteira.</td></tr>
+      <tr><td><b>Cinco propulsores:</b> Falta, Necessidades, Mandato da Fase de Vida, Chamado do Propósito, Convocação</td><td>Listas parciais apresentadas como completas</td><td></td></tr>
+      <tr><td><b>Faixas de Evolução</b></td><td>Nomes inventados de faixas</td><td></td></tr>
+      <tr><td><b>Sistemas neurofuncionais SNO e SNE</b></td><td>—</td><td></td></tr>
+      <tr><td><b>Não ressignificação de memória</b></td><td>“ressignifique suas memórias”</td><td>A tese é que a transformação <b>não</b> vem de reescrever memórias. Usar “ressignificação” contradiz o método.</td></tr>
+      <tr><td><b>Virtudes = competências elaboradas de resposta</b></td><td>Virtude como moralismo, “ser bonzinho”</td><td></td></tr>
+      <tr><td><b>Abordagem · escola · campo de estudo</b></td><td>“curso”, “método”, “técnica”</td><td>A Virtologia é uma abordagem completa, da mesma natureza que a psicanálise. Chamá-la de curso destrói o posicionamento.</td></tr>
+      <tr><td>Grafia: <b>virtológico · virtológica</b></td><td>—</td><td></td></tr>
+    </table>
+    <div class="dica"><b>Atenção na legendagem:</b> o corretor automático não conhece <b>Virtologia</b>, <b>virtológico</b>, <b>Casarotto</b>, <b>Leis da Vida</b>. Revise termo a termo — erro de legenda em termo oficial é erro de conformidade.</div>
+
+    <h3>3.3 Palavras proibidas × vocabulário da casa</h3>
+    <div class="duo">
+      <div class="errado"><span class="rot">❌ Nunca escrever — nem em comentário, nem em DM</span>
+        <ul style="margin-left:16px;margin-bottom:0">
+          <li><b>“cura”</b> em qualquer forma — promessa clínica indevida</li>
+          <li>“elimina”, “acaba com”, “resolve de vez” + transtorno</li>
+          <li>“substitui terapia” ou “substitui medicação”</li>
+          <li>Diagnóstico (“isso que você tem é X”)</li>
+          <li>Garantia de resultado (“em 30 dias você…”)</li>
+          <li>Escassez ou urgência falsas (“últimas vagas”, contagem regressiva)</li>
+          <li>Linguagem de coach: caixa alta, grito, “transforme sua vida”</li>
+        </ul>
+      </div>
+      <div class="certo"><span class="rot">✅ Use isto</span>
+        <ul style="margin-left:16px;margin-bottom:0">
+          <li><b>transformação · aprendizado · desenvolvimento · estudo</b></li>
+          <li><b>“trata”</b> — esta palavra <b>pode</b> ser usada. É a palavra correta e não configura promessa: tratar não é garantir resultado.</li>
+          <li>“a Virtologia investiga como…”</li>
+          <li>“no estudo das virtudes, compreendemos que…”</li>
+          <li>“o que a abordagem propõe é…”</li>
+          <li>Construções <b>“da… à…”</b> para descrever percursos</li>
+        </ul>
+      </div>
+    </div>
+    <div class="dica"><b>Cuidado com causalidade acidental:</b> uma lista depois de dois-pontos pode parecer que está respondendo “o que causa X”. Antes de enviar, releia perguntando: <em>“esta frase promete que X causa Y?”</em> Se sim, reescreva.</div>
+
+    <h3>3.4 Tom de voz</h3>
+    <ul>
+      <li><b>Acolhedor sem ser meloso.</b> Falamos de dor humana com respeito, nunca com sensacionalismo.</li>
+      <li><b>Técnico e acessível.</b> Termo oficial + explicação simples logo em seguida.</li>
+      <li><b>Professoral, nunca arrogante.</b> Ninguém é humilhado por perguntar.</li>
+      <li><b>Sóbrio.</b> Sem euforia, sem excesso de emoji, sem exclamação em série.</li>
+      <li>Evite clichês que denunciam texto automático: “no mundo de hoje”, “é importante notar”, “não é isto; é aquilo”.</li>
+    </ul>
+
+    <div class="check">
+      <h4>Checklist — rode antes de publicar ou responder</h4>
+      <ol>
+        <li>Os termos batem com a tabela 3.2?</li>
+        <li>Os números estão certos — <b>51</b> Necessidades Humanas, <b>33</b> Virtudes?</li>
+        <li>Usei alguma palavra da lista proibida?</li>
+        <li>Alguma frase promete resultado, cura ou causalidade que não pretendi?</li>
+        <li>Chamei a Virtologia de “curso” ou “método” em algum lugar?</li>
+        <li>Em dúvida em qualquer item: <b>segure e pergunte ao Rodolfo.</b></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="mod" id="m4">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">4</span><h2>Responder comentários</h2></div>
+    <p class="lead">Esta é a frente mais importante do seu trabalho, porque é a única em que você cria de verdade. <b>Toda resposta tem três objetivos, sempre nessa ordem.</b></p>
+
+    <div class="alertao">
+      <div class="tag">Leia isto antes de responder qualquer comentário</div>
+      <p><b>Quem lê a resposta vai achar que quem escreveu foi o Eduardo.</b> É assim que funciona nas redes: a pessoa comenta no perfil dele, recebe uma resposta e presume que é ele. Você não precisa fingir ser o Eduardo — precisa escrever de um jeito que <b>não fique incompatível</b> com ele.</p>
+      <p>Na prática: nada de <span class="ruim">“Que bommm que você gostou 🥰💙”</span>. Um professor e pesquisador não responde assim. Escreva como ele escreveria — com calma, com conteúdo, com sobriedade. Sem euforia, sem enfileirar emojis, sem exclamação em série, sem diminutivo afetuoso.</p>
+      <p style="margin-bottom:0"><b>Nas DMs é o contrário:</b> ali você <b>se identifica</b>. Ver Módulo 5.</p>
+    </div>
+
+    <div class="ficha ouro">
+      <div class="ficha-tag">Os três objetivos de toda resposta</div>
+      <ol style="margin-bottom:0">
+        <li><b>Educar.</b> Ensine alguma coisa de verdade — um conceito, um sentido, uma distinção. A resposta precisa ter conteúdo.</li>
+        <li><b>Ampliar o interesse pela Virtologia.</b> Mostre que existe uma estrutura maior por trás daquele vídeo, e que vale conhecer.</li>
+        <li><b>Convidar para a mensagem.</b> Diga que a pessoa pode mandar uma mensagem se quiser aprender mais — e aí você indica onde ela pode estudar (o site tem bastante conteúdo para leitura e estudo). O convite entra em toda resposta, <b>uma vez e sem insistência</b> — ver o gatilho do descaso abaixo.</li>
+      </ol>
+    </div>
+
+    <div class="alertao verde">
+      <div class="tag">O gatilho do descaso — o tom que define tudo</div>
+      <p>Nós <b>não queremos parecer que queremos</b>. Estamos dispostos a ajudar e a espalhar o conhecimento — e é só isso. Nunca podemos passar a impressão de que precisamos que a pessoa nos consuma, nos estude ou compre alguma coisa.</p>
+      <p>A diferença é fina, mas o público percebe na hora. Quem se coloca <b>tanto</b> à disposição parece estar com necessidade — e necessidade tira autoridade. Quem responde com generosidade tranquila, sem correr atrás, tem autoridade.</p>
+      <div class="duo" style="margin:14px 0 0">
+        <div class="errado"><span class="rot">❌ Soa como necessidade</span>
+          <ul style="margin-left:16px;margin-bottom:0">
+            <li>“Corre lá no site, tem MUITA coisa esperando por você!!”</li>
+            <li>“Me chama que eu te explico tudinho, vou adorar te ajudar 💙”</li>
+            <li>“Não perde essa oportunidade de conhecer a Virtologia!”</li>
+            <li>Insistir, repetir o convite, mandar mensagem de novo sem resposta</li>
+          </ul>
+        </div>
+        <div class="certo"><span class="rot">✅ Soa como disponibilidade</span>
+          <ul style="margin-left:16px;margin-bottom:0">
+            <li>“Se quiser se aprofundar nisso, me manda uma mensagem que eu te indico por onde começar.”</li>
+            <li>“Tem material sobre isso no site, caso queira estudar com calma.”</li>
+            <li>“Qualquer dúvida, estou por aqui.”</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin:14px 0 0"><b>O convite existe em toda resposta — mas dito uma vez, com naturalidade, e sem insistir.</b> Oferecemos o caminho; quem decide andar é a pessoa.</p>
+    </div>
+
+    <h3>4.1 A estrutura de uma boa resposta</h3>
+    <ol class="passos">
+      <li><b>Acolha o que a pessoa disse.</b> Uma frase curta, específica — mostre que você leu.</li>
+      <li><b>Ensine algo.</b> Explique um conceito, faça uma distinção, aprofunde o ponto. Aqui está o valor.</li>
+      <li><b>Abra para mais.</b> Sinalize que existe mais a estudar sobre aquilo.</li>
+      <li><b>Convide para a mensagem.</b> “Se quiser se aprofundar, me manda uma mensagem que eu te indico por onde começar.”</li>
+    </ol>
+    <div class="dica"><b>Regra prática:</b> se a sua resposta cabe em “Obrigada! 🙏” ou só em emojis, ela não cumpriu nenhum dos três objetivos. <b>Reescreva.</b> Cada comentário respondido é uma aula de dois parágrafos que fica pública para todo mundo ler.</div>
+
+    <h3>4.2 Exemplos</h3>
+    <div class="duo">
+      <div class="errado"><span class="rot">❌ Resposta fraca</span>
+        <p style="margin:0;font-size:.92rem"><em>Comentário:</em> “Nossa, isso explica muita coisa!”</p>
+        <p style="margin:8px 0 0;font-size:.92rem"><em>Resposta:</em> “Que bommm que você gostou 🥰💙”</p>
+        <p style="margin:10px 0 0;font-size:.83rem;color:#8A4432"><b>Por quê:</b> não ensina nada, não amplia nada, não convida para nada — e não parece o Eduardo respondendo.</p>
+      </div>
+      <div class="certo"><span class="rot">✅ Resposta no padrão</span>
+        <p style="margin:0;font-size:.92rem"><em>Comentário:</em> “Nossa, isso explica muita coisa!”</p>
+        <p style="margin:8px 0 0;font-size:.92rem"><em>Resposta:</em> “Esse ponto do vídeo é só uma parte de algo maior: a Virtologia estuda como certas forças colocam a pessoa em movimento — e entender qual delas está ativa muda a leitura que se faz da própria história. Se quiser se aprofundar, me manda uma mensagem que eu indico por onde começar.”</p>
+      </div>
+    </div>
+
+    <h3>4.3 Tipos de comentário e como agir</h3>
+    <table>
+      <tr><th>Tipo</th><th>Como agir</th></tr>
+      <tr><td><b>Elogio ou identificação</b><br><em>“isso sou eu”, “que aula”</em></td><td>Acolha em uma frase e <b>use o espaço para ensinar</b> — é a maior oportunidade de conteúdo público. Depois convide para a mensagem.</td></tr>
+      <tr><td><b>Pergunta teórica</b><br><em>“o que são as Faixas de Evolução?”</em></td><td>Responda com o termo oficial e explique de forma simples. Se não tiver certeza da resposta, <b>não invente</b>: pergunte ao Rodolfo e responda depois.</td></tr>
+      <tr><td><b>Pergunta sobre formação, livro ou preço</b></td><td>Responda com gentileza e <b>leve para a DM</b>: “te chamo no direct com as informações”. Preço só a partir da tabela oficial (Módulo 11).</td></tr>
+      <tr><td><b>Relato pessoal de sofrimento</b></td><td>Acolha com respeito, <b>sem diagnosticar e sem prometer nada</b>. Nunca dê orientação clínica. Fale do estudo, não do caso. Se a pessoa parecer em situação delicada, encaminhe para a DM e avise o Rodolfo.</td></tr>
+      <tr><td><b>Comentário cético ou crítico</b></td><td>Não brigue e não apague. Responda com calma e substância — quem lê a discussão julga pela qualidade da resposta. Este é o perfil Clínico em Ruptura: ceticismo é o comportamento normal dele.</td></tr>
+      <tr><td><b>Ofensa, spam ou ataque pessoal</b></td><td>Não responda. Oculte ou denuncie.</td></tr>
+      <tr><td><b>Palavra-chave do CTA</b><br><em>a pessoa comentou a palavra que a legenda pediu</em></td><td>Siga o fluxo combinado de envio e <b>contabilize separadamente</b> no relatório semanal (Módulo 9).</td></tr>
+    </table>
+
+    <h3>4.5 Política de moderação</h3>
+    <p>Nem todo comentário merece resposta, e alguns não devem permanecer no ar. Use esta régua:</p>
+    <table>
+      <tr><th>Situação</th><th>O que fazer</th></tr>
+      <tr><td><b>Crítica extrema</b> — ataque, hostilidade, comentário agressivo contra o Eduardo, contra a Virtologia ou contra outra pessoa</td><td><b>Excluir.</b> Não responda, não discuta, não deixe no ar.</td></tr>
+      <tr><td><b>Ofensa pessoal, xingamento, discurso de ódio</b></td><td><b>Excluir</b> e denunciar o perfil na própria rede.</td></tr>
+      <tr><td><b>Spam, divulgação de terceiros, corrente, golpe</b></td><td><b>Excluir</b> e denunciar.</td></tr>
+      <tr><td><b>Crítica ou dúvida legítima</b>, feita com educação — mesmo que cética ou discordante</td><td><b>Responder.</b> Não exclua. Este é o Clínico em Ruptura: ceticismo educado é o comportamento normal dele, e a boa resposta convence quem está lendo.</td></tr>
+      <tr><td><b>Provocação boba</b>, piada sem gravidade, comentário aleatório</td><td><b>Ignorar.</b> Não vale nem resposta nem exclusão.</td></tr>
+    </table>
+    <div class="dica"><b>A linha que separa:</b> discordar do conteúdo é legítimo e fica. <b>Atacar</b> — a pessoa, o trabalho ou a instituição — não é discussão, é hostilidade, e sai. Na dúvida entre responder e excluir, prefira <b>não responder e perguntar antes</b>: exclusão é irreversível e resposta ruim fica pública.</div>
+    <p>Não entre em discussão pública com quem está atacando. Você nunca ganha essa conversa, e quem lê julga o perfil pelo tom, não pelo argumento.</p>
+
+    <h3>4.6 A ordem de trabalho</h3>
+    <ol class="passos">
+      <li>Comece pelos vídeos publicados <b>há cerca de um mês</b> e venha avançando até os de hoje.</li>
+      <li>Responda <b>todos</b> os comentários — não selecione os mais fáceis.</li>
+      <li>Faça isso <b>todo dia</b>, em todas as redes.</li>
+      <li>Comentário antigo respondido continua valendo: aquele vídeo pode voltar a circular a qualquer momento.</li>
+    </ol>
+    <div class="dica"><b>Guarde as boas perguntas.</b> Toda semana, separe as 10 melhores perguntas e objeções que apareceram nos comentários e mande para o Rodolfo junto com o relatório. Elas viram pauta de conteúdo — e você deixa de ser só quem responde para ser quem alimenta a estratégia.</div>
+  </div>
+</section>
+
+<section class="mod" id="m5">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">5</span><h2>Responder DMs</h2></div>
+    <p class="lead">A DM é onde a pessoa realmente se aproxima. Os três objetivos do Módulo 4 continuam valendo — só que aqui você tem espaço para explicar de verdade e para <b>indicar por onde ela estuda</b>.</p>
+
+    <div class="ficha">
+      <div class="ficha-tag">O destino de toda DM</div>
+      <p style="margin:0">Quem manda mensagem quer aprender mais. Sua função é <b>entregar caminho de estudo</b>: o site do Instituto tem bastante conteúdo para ela ler e estudar. Você indica o caminho e ela decide se vai. Sem insistência, sem oferta, sem correr atrás — vale aqui o mesmo gatilho do descaso do Módulo 4.</p>
+    </div>
+
+    <h3>5.1 O passo a passo de uma DM</h3>
+    <ol class="passos">
+      <li><b>Responda rápido.</b> Meta: menos de 24 horas, e no mesmo dia sempre que possível.</li>
+      <li><b>Apresente-se</b> — ver 5.2 logo abaixo.</li>
+      <li><b>Identifique o perfil</b> (Módulo 2): clínico, vocacional ou institucional. Isso define o tom.</li>
+      <li><b>Chame pelo nome</b> e responda exatamente o que foi perguntado — nada de mensagem genérica.</li>
+      <li><b>Ensine alguma coisa</b> antes de indicar qualquer link. A explicação vem primeiro.</li>
+      <li><b>Indique onde estudar</b> — o material do site, o conteúdo gratuito, o livro correspondente.</li>
+      <li><b>Deixe a porta aberta</b> e pare por aí: “qualquer dúvida, estou por aqui”. Se a pessoa não responder, não insista.</li>
+      <li><b>Registre</b> na sua planilha de acompanhamento (Módulo 9): nome, data, o que a pessoa quer, o que você respondeu.</li>
+    </ol>
+
+    <h3>5.2 Como você se apresenta</h3>
+    <div class="alertao">
+      <div class="tag">Na DM, sempre se identifique</div>
+      <p>Ao contrário do comentário, aqui a pessoa <b>não pode achar que está falando com o Eduardo</b>. Abra a conversa deixando claro quem você é:</p>
+      <p class="fala">“Oi! Aqui é a Giulia, da equipe do prof. Eduardo Casarotto.”</p>
+      <p style="margin-bottom:0">Uma vez, no início da conversa. Não precisa repetir a cada mensagem. Depois disso, siga normalmente — com o mesmo tom sóbrio do Módulo 3.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="mod" id="m6">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">6</span><h2>Stories</h2></div>
+    <p class="lead">Os stories seguem a técnica do curso <b><em>Stories 10x</em></b>, que já está com você. O Eduardo vai indicar <b>exatamente quais stories postar</b> — sua parte é executar com a técnica do curso.</p>
+
+    <div class="ficha">
+      <div class="ficha-tag">Como funciona na prática</div>
+      <ol style="margin-bottom:0">
+        <li>O Eduardo passa a indicação do que deve ir ao ar.</li>
+        <li>Você aplica a técnica do <em>Stories 10x</em> na execução: sequência, ritmo, abertura, encadeamento e chamada.</li>
+        <li>Tudo passa pelo Módulo 3 antes de publicar — <b>termo oficial e nenhuma promessa</b>, story também é publicação.</li>
+      </ol>
+    </div>
+
+    <h3>6.1 Estudo do curso</h3>
+    <p><b>Estudar o <em>Stories 10x</em> faz parte da sua rotina</b> (Módulo 10), não é algo para “quando sobrar tempo”. Enquanto você não tiver terminado, avance um módulo por dia e aplique no mesmo dia o que aprendeu.</p>
+    <div class="dica"><b>Anote enquanto estuda.</b> Cada técnica do curso que você aplicar, registre o que aconteceu: quantas pessoas viram, quantas responderam, onde caiu a audiência. Isso entra no relatório semanal e vira aprendizado real.</div>
+
+    <h3>6.2 O que vale para todo story</h3>
+    <ul>
+      <li><b>Frequência:</b> stories todos os dias no Instagram.</li>
+      <li><b>Tom:</b> o mesmo do Módulo 3 — sóbrio, professoral, sem euforia.</li>
+      <li><b>Sem promessa clínica</b>, sem escassez fabricada, sem linguagem de coach.</li>
+      <li><b>Caixinha de perguntas</b> é ouro: as perguntas que chegam ali viram pauta. Mande as melhores para o Rodolfo junto com o relatório.</li>
+      <li>Story que gera resposta na DM entra no fluxo do Módulo 5 como qualquer outra mensagem.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="mod" id="m7">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">7</span><h2>Onde e quando publicar</h2></div>
+    <p class="lead">Você não precisa decidir o que postar — só <b>onde e com que frequência</b>. Timestamps, arquivos, imagens e legendas chegam todos pelo mesmo lugar.</p>
+
+    <h3>7.1 De onde vem o material da semana</h3>
+    <div class="alertao">
+      <div class="tag">O documento é a sua fonte única</div>
+      <p><b>Todo domingo</b> o Eduardo publica ali os posts da semana inteira. Cada <b>guia (aba) do documento é uma semana</b> — conforme as semanas avançam, abre-se uma guia nova. As guias ficam do lado esquerdo do documento.</p>
+      <p><a href="https://docs.google.com/document/d/1fJfaR2RKmOWn6s9TUEspxxF4owSF-oGJQQqrCK8QF5o/edit?tab=t.0" target="_blank" rel="noopener noreferrer"><b>▸ Abrir o documento dos posts</b></a></p>
+      <p style="margin-bottom:0">Em cada guia você encontra, por post:</p>
+      <ul style="margin:8px 0 0 16px">
+        <li><b>Post em vídeo:</b> os timestamps de corte + o link do arquivo bruto do vídeo no Drive.</li>
+        <li><b>Post em imagem:</b> a imagem já pronta.</li>
+        <li><b>A legenda</b> de cada post, para copiar e colar.</li>
+      </ul>
+    </div>
+    <p><b>Comece a semana abrindo a guia nova.</b> Se a guia da semana não estiver lá na segunda de manhã, pergunte — não trabalhe pela guia da semana anterior.</p>
+
+    <h3>7.2 Duas linhas de conteúdo, dois destinos</h3>
+    <p>Tudo o que publicamos pertence a uma de duas linhas, e <b>é o tema que decide para onde vai</b>. A regra é simples: cada linha tem o seu perfil próprio, e <b>tudo passa também pelo perfil do Eduardo</b>.</p>
+    <table>
+      <tr><th>Se o conteúdo é sobre…</th><th>Vai para…</th><th>E também para…</th></tr>
+      <tr><td><b>Virtologia</b></td><td>Instagram <b>@virtologia</b></td><td rowspan="2" style="vertical-align:middle;background:#FFFDF4"><b>@eduardocasarottooficial</b><br><span style="font-size:.88em;color:var(--cinza)">o perfil do Eduardo recebe <b>os dois</b> tipos de conteúdo</span></td></tr>
+      <tr><td><b>Sistemas Humanizados</b></td><td>Instagram <b>@humanizacao2.0</b></td></tr>
+    </table>
+    <div class="ficha">
+      <div class="ficha-tag">Vale igual para o que sai do LinkedIn</div>
+      <p style="margin:0">Todo conteúdo de <b>Sistemas Humanizados</b> publicado no LinkedIn vai também para o <b>@humanizacao2.0</b> e para o <b>@eduardocasarottooficial</b>. Todo conteúdo de <b>Virtologia</b> vai também para o <b>@virtologia</b> e para o <b>@eduardocasarottooficial</b>. Nada de Humanização entra no perfil da Virtologia, e vice-versa — só o perfil do Eduardo reúne as duas linhas.</p>
+    </div>
+
+    <h3>7.3 Frequência por canal</h3>
+    <div class="canais">
+      <div class="canal"><span class="ico">📸</span><b>Instagram</b>Reels + stories<br><em>todo dia</em></div>
+      <div class="canal"><span class="ico">🎵</span><b>TikTok</b>Vídeo vertical<br><em>todo dia</em></div>
+      <div class="canal"><span class="ico">▶️</span><b>YouTube Virtologia</b>Vídeo e Shorts<br><em>mínimo 2×/semana</em></div>
+      <div class="canal"><span class="ico">🤝</span><b>YouTube Humanização</b>Vídeo e Shorts<br><em>1 a 2×/semana</em></div>
+      <div class="canal"><span class="ico">💼</span><b>LinkedIn</b>Vídeo e imagem<br><em>3 a 4×/semana</em></div>
+    </div>
+    <table>
+      <tr><th>Canal</th><th>Frequência</th><th>Observação</th></tr>
+      <tr><td><b>Instagram</b></td><td><b>Todo dia</b> — 1 publicação + stories</td><td>Reels é o formato principal. Stories seguem o Módulo 6. Ver a regra dos perfis em 7.2.</td></tr>
+      <tr><td><b>TikTok</b></td><td><b>Todo dia</b></td><td>Em geral o mesmo vídeo vertical do Reels.</td></tr>
+      <tr><td><b>YouTube — Virtologia</b></td><td><b>Mínimo 2× por semana</b> — podendo chegar a quase todo dia</td><td>Canal <b>Instituto Virtudes</b>. Depende da duração do corte: ver 7.4.</td></tr>
+      <tr><td><b>YouTube — Humanização</b></td><td><b>1 a 2× por semana</b></td><td>Só conteúdo de Sistemas Humanizados. Mesma regra de duração de 7.4.</td></tr>
+      <tr><td><b>LinkedIn</b></td><td><b>3 a 4× por semana</b></td><td>Vídeo e também <b>imagem com texto</b>. Tom mais formal — público profissional e institucional.</td></tr>
+    </table>
+
+    <h4>Os acessos</h4>
+    <table>
+      <tr><th>Canal</th><th>Conta</th></tr>
+      <tr><td>YouTube <b>Instituto Virtudes</b> (Virtologia)</td><td><b>profpsicanalise@</b></td></tr>
+      <tr><td>YouTube <b>Humanização</b></td><td><b>profpsicanalise@</b> — a mesma conta dá acesso aos dois canais</td></tr>
+      <tr><td>Instagram Humanização</td><td><b>@humanizacao2.0</b></td></tr>
+      <tr><td>Instagram Virtologia</td><td><b>@virtologia</b></td></tr>
+      <tr><td>Instagram Eduardo Casarotto</td><td><b>@eduardocasarottooficial</b></td></tr>
+    </table>
+    <div class="dica"><b>Atenção ao canal ativo:</b> como o mesmo login abre os dois canais do YouTube, é fácil publicar no lugar errado. <b>Confira em qual canal você está antes de subir cada vídeo</b> — conteúdo de Humanização no canal da Virtologia (ou o contrário) é o erro mais provável de toda essa operação.</div>
+
+    <h3>7.4 A regra do YouTube — decore esta</h3>
+    <p>Vale para <b>os dois canais</b>, Virtologia e Humanização. Nossos cortes têm em média <b>5 minutos</b>, e é isso que permite alimentar o YouTube quase todo dia sem produzir nada a mais. A duração do corte decide o destino:</p>
+
+    <div class="ficha">
+      <div class="ficha-tag">Decisão em uma pergunta: o corte tem 5 minutos ou mais?</div>
+      <table style="margin:12px 0 0">
+        <tr><th>Duração do corte</th><th>Para onde vai</th><th>O que você faz</th></tr>
+        <tr><td><b>5 minutos ou mais</b></td><td>YouTube <b>normal</b> (vídeo comum)</td><td>Publica o mesmo corte que foi para TikTok/Reels/LinkedIn — no canal da linha correspondente.</td></tr>
+        <tr><td><b>Menos de 5 minutos</b></td><td>YouTube <b>Shorts</b></td><td><b>Não vai para o vídeo normal.</b> Você corta mais um pouco até ficar com <b>no máximo 3 minutos</b> — o limite que cabe no Shorts — e publica lá.</td></tr>
+      </table>
+    </div>
+    <p><b>Traduzindo:</b> todo corte que você edita tem destino no YouTube. Se for longo, vai inteiro. Se for curto, você faz um segundo aperto para caber em 3 minutos e ele vira Short. <b>O tema decide o canal; a duração decide o formato.</b></p>
+    <div class="dica"><b>Ao encurtar para o Shorts:</b> continue valendo a regra do Módulo 8 — corte só o necessário, mantenha o raciocínio inteiro. Um Short que termina no meio de uma ideia é pior do que não publicar. Se não der para fechar o raciocínio em 3 minutos, avise em vez de mutilar o conteúdo.</div>
+
+    <h3>7.5 Ao publicar</h3>
+    <ol class="passos">
+      <li><b>Confira a linha do conteúdo</b> — Virtologia ou Sistemas Humanizados — e monte a lista de destinos pela tabela 7.2 antes de começar.</li>
+      <li><b>Cole a legenda exatamente como ela chegou</b> no documento. Não reescreva, não corrija, não “melhore”. Se algo parecer errado, pergunte antes de publicar.</li>
+      <li>Confira que a palavra-chave do CTA está no texto — é ela que a pessoa vai comentar.</li>
+      <li>Confira o formato: vertical <b>9:16</b> para Reels, TikTok e Shorts.</li>
+      <li>Registre o que foi publicado, em qual canal e em que dia — você vai precisar disso no relatório da semana.</li>
+    </ol>
+    <div class="ficha coral">
+      <div class="ficha-tag">Rastreamento de links</div>
+      <p style="margin:0">O rastreamento dos links <b>ainda não está pronto</b>. Por enquanto, publique os links exatamente como forem passados a você. Quando o padrão estiver definido, ele entra neste módulo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mod" id="m8">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">8</span><h2>Editar os vídeos no CapCut</h2></div>
+    <span class="mod-nivel niv-todos">Obrigatório para quem edita os Reels e vídeos verticais</span>
+    <p class="lead">Este módulo é o manual de execução da edição. Os seis vídeos-tutorial foram gravados pelo <b>Eduardo</b> e <b>abrem no YouTube em uma nova aba</b> — sob cada um está o passo a passo escrito e a transcrição completa, que cobrem todo o conteúdo do vídeo. <b>Siga a ordem das etapas</b> — especialmente a Etapa 2, que é a que mais dá problema quando é pulada.</p>
+
+    <div class="ficha">
+      <div class="ficha-tag">Fluxo de trabalho — quem entrega o quê</div>
+      <p><b>O Rodolfo envia para você, por reels:</b></p>
+      <ol style="margin-bottom:8px">
+        <li>o <b>vídeo inteiro</b> (a gravação completa, sem cortes);</li>
+        <li>a <b>lista de timestamps</b> — os pontos de corte de cada reels, já definidos;</li>
+        <li>a <b>legenda do reels</b> (o texto que vai na publicação).</li>
+      </ol>
+      <p style="margin:0"><b>Você não decide o que entra e o que sai.</b> Os cortes já vêm decididos e validados. Sua responsabilidade é executá-los com precisão e aplicar o padrão visual da casa. Dúvida sobre o conteúdo de um corte: pergunte ao Rodolfo antes de editar, não depois.</p>
+    </div>
+
+    <div class="refvis">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCALqAZ8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDw2iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACinxRvNIscSM7scKqjJJ9hVu+0jU9ORXv9Pu7ZGGVaaFkB/EigCjRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRUnky+V5vlv5f9/acfnUdABRRRQAUUUUAFFTWltPeXMVtaxPLPKwVI0GSxPYU6+srnT7qS1voJILiM4eORdrKfpQBXoop4ikMZlCN5YOC+OM+maAGUVau9OvbO2trm6tpIobpS8DuuBIBwSKq0AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRR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KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigC//AGY//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQBmf2Y//PRfyNH9mP8A89F/I1p0UAZn9mP/AM9F/I0f2Y//AD0X8jWnRQB//9k=" alt="Referência visual: vídeo vertical 9:16 com headline no topo e o vídeo com máscara de cantos arredondados ao centro">
+      <div class="txt">
+        <b>O resultado</b>
+        <p style="margin:8px 0 0">Formato <b>9:16</b>, headline em texto no topo (duas ou três linhas), o vídeo ao centro com <b>máscara de cantos arredondados</b> e borda respirando dos dois lados, legendas queimadas e correção de cor aplicada. Toda a Etapa 4 em diante existe para chegar exatamente aqui.</p>
+      </div>
+    </div>
+
+    <h3>8.1 Etapa 1 — Importar e conferir antes de tocar em qualquer coisa</h3>
+    <ol class="passos">
+      <li>Importe o vídeo inteiro no CapCut e arraste-o para a linha do tempo.</li>
+      <li>Abra a lista de timestamps do Rodolfo ao lado. Confira que o <b>tempo zero do arquivo</b> corresponde ao tempo zero da lista — se o vídeo que você recebeu já vier aparado no começo, todos os timestamps saem do lugar. Na dúvida, avise antes de começar.</li>
+      <li>Só depois disso siga para a Etapa 2. <b>Não corte nada ainda.</b></li>
+    </ol>
+
+    <h3>8.2 Etapa 2 — A regra de ouro: marcar tudo antes de cortar</h3>
+    <div class="ficha coral">
+      <div class="ficha-tag">Por que isso é inegociável</div>
+      <p style="margin:0">Os timestamps do Rodolfo se referem ao <b>vídeo inteiro</b>. No instante em que você faz o primeiro corte, todo o resto da linha do tempo do CapCut <b>anda para trás</b> e deixa de bater com a lista. A partir daí você estaria cortando no lugar errado — ou perdendo tempo recalculando cada ponto na mão.</p>
+    </div>
+    <p>A solução é <b>demarcar todos os pontos primeiro</b>, com marcadores, e só então cortar. Os marcadores ficam presos ao tempo do vídeo e viram o seu mapa visual.</p>
+
+    <h4>Como marcar</h4>
+    <ol class="passos">
+      <li>Selecione a <b>faixa do vídeo</b> na linha do tempo (o marcador só é criado com a faixa selecionada).</li>
+      <li>Leve o cursor de reprodução até o timestamp da lista.</li>
+      <li>Clique em <b>Adicionar marcador</b> — ou use o atalho <kbd>M</kbd>. O marcador nasce <b>azul</b>, que é a cor padrão do CapCut.</li>
+      <li>Para transformar um marcador em <b>vermelho</b>: dê <b>duplo clique</b> sobre ele e altere a cor.</li>
+      <li>Repita para <b>todos</b> os pontos da lista, do início ao fim, antes de qualquer corte.</li>
+    </ol>
+
+    <div class="linhatempo">
+      <div class="lt-faixa">
+        <div class="lt-m az" style="left:4%"><em>00:12</em><i></i><span></span></div>
+        <div class="lt-m vm" style="left:26%"><em>01:40</em><i></i><span></span></div>
+        <div class="lt-m az" style="left:44%"><em>02:15</em><i></i><span></span></div>
+        <div class="lt-m vm" style="left:66%"><em>03:58</em><i></i><span></span></div>
+        <div class="lt-m az" style="left:82%"><em>04:30</em><i></i><span></span></div>
+      </div>
+      <div class="lt-leg">
+        <b class="az"><span>Marcador <strong>azul</strong> — início de um trecho que <strong>FICA</strong></span></b>
+        <b class="vm"><span>Marcador <strong>vermelho</strong> — início de um trecho que <strong>SAI</strong></span></b>
+      </div>
+      <p style="font-size:.82rem;color:#9FB0C9;margin:12px 0 0">Lendo a linha acima: fica de 00:12 a 01:40 · sai de 01:40 a 02:15 · fica de 02:15 a 03:58 · sai de 03:58 a 04:30 · fica de 04:30 até o próximo marcador. <b>Cada marcador vermelho “desliga” o vídeo até o próximo azul.</b></p>
+    </div>
+    <p>Com o mapa pronto, você enxerga o reels inteiro antes de destruir a sincronia — e consegue conferir com a lista do Rodolfo item por item.</p>
+    <div class="dica"><b>Confira antes de cortar:</b> o número de marcadores azuis + vermelhos tem que bater com o número de pontos da lista. Se não bater, algum ponto ficou de fora — resolva agora, não depois.</div>
+
+    <h3>8.3 Etapa 3 — Cortar</h3>
+    <ol class="passos">
+      <li>Posicione o cursor em cada marcador e divida a faixa (<kbd>Ctrl/Cmd</kbd> + <kbd>B</kbd> ou o botão de dividir).</li>
+      <li>Apague os trechos que começam em <b>marcador vermelho</b>.</li>
+      <li>Junte o que sobrou. Os trechos azuis são o seu reels.</li>
+      <li>Corte também <b>gaguejo e travadas de fala</b> — só isso. Não corte silêncios e pausas naturais (ver Etapa 6): o pedido do Eduardo é o <b>menor número de cortes possível</b>.</li>
+    </ol>
+
+    <h3>8.4 Etapa 4 — Proporção 9:16, enquadramento e máscara</h3>
+    <p><b>Vídeo-tutorial 1 · Máscara de vídeo</b> — é o que transforma a gravação horizontal no formato publicado.</p>
+
+    <div class="tut">
+      <h4>▶︎ Vídeo 1 — Máscara de vídeo</h4>
+      <a class="ytcard" href="https://www.youtube.com/watch?v=h5ShkRomrns" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span><span class="tx"><b>Máscara de vídeo</b><em>Proporção 9:16, enquadramento, máscara e cantos arredondados</em><small>Abrir no YouTube ↗</small></span></a>
+
+      <h4 style="font-size:1rem;margin-top:18px">Passo a passo</h4>
+      <ol class="passos">
+        <li><b>Proporção.</b> Clique em <b>Proporção</b> e escolha <b>9:16</b>. O vídeo horizontal vai aparecer pequeno no meio do quadro vertical.</li>
+        <li><b>Zoom e posição.</b> Dê zoom no vídeo — arrastando as alças na prévia ou aumentando a <b>escala</b> — e centralize o Eduardo no quadro.</li>
+        <li><b>Cheque o trecho inteiro antes de fixar o zoom.</b> Se ele se mexer bastante ao longo do trecho, <b>não dê tanto zoom</b>, senão ele sai do enquadramento. O enquadramento é <b>fixo</b>: escolha a posição que funciona do começo ao fim daquele trecho, sem precisar animar nada. Um trecho pode pedir o vídeo mais para um lado, outro trecho para o outro — depende do momento.</li>
+        <li><b>Máscara.</b> Com o trecho selecionado, vá em <b>Mascarar → Adicionar máscara</b> e escolha o retângulo.</li>
+        <li><b>Tamanho da borda.</b> Ajuste a máscara deixando uma <b>bordinha visível</b> dos dois lados — nem colada na tela, nem exagerada. <b>Borda muito fina desaparece em alguns celulares</b>, porque o aparelho dá um zoom no vídeo por causa da proporção da tela. É por isso que a folga existe.</li>
+        <li><b>Arredondamento.</b> Logo abaixo, aumente o <b>arredondamento dos cantos</b> — <b>até 10, no máximo</b>.</li>
+        <li><b>Replicar em todos os trechos.</b> Você fez isso em um trecho só; os outros continuam sem máscara. Clique com o <b>botão direito</b> no trecho já ajustado → <b>Copiar atributos</b>. Selecione <b>todos</b> os trechos do vídeo → <b>Colar atributos</b>. Pronto: zoom, posição e máscara ficam idênticos em todos.</li>
+      </ol>
+      <div class="valores">
+        <div class="val"><b>9:16</b><span>proporção de saída</span></div>
+        <div class="val"><b>≤ 10</b><span>arredondamento dos cantos</span></div>
+        <div class="val"><b>Fixo</b><span>enquadramento (sem animar)</span></div>
+      </div>
+      <div class="dica"><b>Erro clássico:</b> aplicar a máscara antes de terminar zoom e posição. Faça na ordem — enquadrar, depois mascarar, depois copiar atributos — ou você vai refazer tudo.</div>
+
+      <details class="transcr">
+        <summary>Transcrição — Vídeo 1: Máscara de vídeo</summary>
+        <div class="corpo">
+          <p><span class="ts">00:00</span>Ó, para você deixar o vídeo desse jeito, desse jeito aqui, até como a gente tá postando, o vídeo, ele vai tá assim.</p>
+          <p><span class="ts">00:14</span>Aí você vai clicar aqui em proporção, colocar o 9 por 16, ficar assim. Aí você vai dar um zoom, você pode fazer assim, né? Ou aumentando aqui na escala.</p>
+          <p><span class="ts">00:30</span>Deixar ele centralizado. Se ele se mexer muito ao longo do trecho que você vai usar, você não vai poder dar tanto zoom, porque senão ele vai sair, né? Tem que dar uma observada nisso ao longo do trecho que será usado.</p>
+          <p><span class="ts">00:44</span>Mas aí beleza, considerando que aqui tá bom, você vai pegar, depois de tá com o zoom correto, a posição aqui correta, mais para cá, mais para lá, deixa ele no meio aqui. Mas cada um às vezes você vai deixar ele mais para cá, às vezes mais para cá, depende daquele momento, daquele corte, né?</p>
+          <p><span class="ts">01:02</span>Tipo, se ele tá fazendo mais movimento, enfim… você vai ver para deixar ele mais centralizado possível ao longo do tempo, sem que você precise ficar mudando isso ao longo do vídeo, né? E vai ficar fixo.</p>
+          <p><span class="ts">01:17</span>Mas aí, beleza, deixou aqui centralizado com o zoom decente. Você vai vir aqui em mascarar, adicionar máscara.</p>
+          <p><span class="ts">01:29</span>E aí você deixa com uma bordinha. Então, a bordinha aqui não pode ser uma bordinha muito fina, porque tem celulares que isso aqui some — o vídeo, ele dá um zoom no vídeo por causa da proporção no celular. Então, deixa assim, como tá aqui mais ou menos, ó.</p>
+          <p><span class="ts">01:49</span>Deixa assim no máscara. Aí tá com mascarar selecionado. Aí você aumenta aqui, ó. Mas não também… tá tipo assim.</p>
+          <p><span class="ts">02:00</span>Beleza? Aí aqui embaixo da máscara tem “cantos arredondados”: você aumenta um pouquinho, deixa aqui no 10 no máximo, tá?</p>
+          <p><span class="ts">02:14</span>E aí você vai clicar — porque assim, você tá fazendo isso só com um trecho, entendeu? O outro trecho aqui do vídeo tá normal. Se for que você vai usar isso daqui tudo, vai usar daqui até aqui, né?</p>
+          <p><span class="ts">02:29</span>Você mexeu nesse. Aí você vai clicar com o botão direito nesse, copiar atributos. E aí você vai selecionar todo o vídeo, todos os trechinhos que você vai usar, né? E vai clicar aqui em colar atributos e colar de novo. Pronto. Aí ele fez isso com todos.</p>
+        </div>
+      </details>
+    </div>
+
+    <h3>8.5 Etapa 5 — Camada de ajuste e correção de cor</h3>
+    <p><b>Vídeo-tutorial 2 · Camada de ajuste (color grading)</b> — o que dá acabamento e profundidade à imagem.</p>
+
+    <div class="tut">
+      <h4>▶︎ Vídeo 2 — Camada de ajuste (color grading)</h4>
+      <a class="ytcard" href="https://www.youtube.com/watch?v=RdAlBdxOcWA" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span><span class="tx"><b>Camada de ajuste (color grading)</b><em>Contraste, sombras, pretos, brilho, saturação e HSL</em><small>Abrir no YouTube ↗</small></span></a>
+
+      <h4 style="font-size:1rem;margin-top:18px">Passo a passo</h4>
+      <ol class="passos">
+        <li><b>Criar a camada.</b> Vá em <b>Ajuste → Ajuste personalizado</b>. Uma faixa nova aparece acima do vídeo — é nela que a correção de cor vive, sem alterar os clipes.</li>
+        <li><b>Dimensionar a camada.</b> Se quiser aplicar a um trecho específico, clique com o <b>botão direito</b> na faixa → <b>Intervalo → Selecionar por clipe</b>, e divida a camada por trechos.</li>
+        <li><b>Contraste:</b> sempre aumente, mas <b>no máximo 10</b>. Acima disso a imagem fica artificial.</li>
+        <li><b>Sombras: −3</b> e <b>Pretos: −3</b>. Quanto mais você abaixa, mais sombra — e é isso que dá <b>profundidade</b> à imagem.</li>
+        <li><b>Brilho:</b> aumente bem. Funciona quase como um contraste que age só na parte escura; ajuda a reforçar os pretos e a profundidade.</li>
+        <li><b>Saturação:</b> só quando o vídeo estiver sem cor. Se ao saturar a imagem puxar demais para o rosa e o laranja, vá em <b>HSL</b> e tire saturação <b>só do laranja</b> — e, se os lábios ficarem saturados demais, reduza também aquela faixa de cor específica.</li>
+        <li><b>Brancos estourados:</b> se o vídeo já vier muito claro, abaixe um pouco os brancos/destaques.</li>
+        <li><b>Nitidez:</b> um pouquinho ajuda — as gravações costumam ter resolução mais baixa por serem feitas em chamada de vídeo. Exagerar deixa a imagem dura.</li>
+        <li><b>Compare sempre antes e depois.</b> Clique no <b>ícone de olho</b> na linha da camada de ajuste para ligar e desligar. Seu olho se acostuma com a cor e perde a referência; a comparação é o que revela o exagero.</li>
+      </ol>
+      <div class="valores">
+        <div class="val"><b>≤ 10</b><span>contraste</span></div>
+        <div class="val"><b>−3</b><span>sombras</span></div>
+        <div class="val"><b>−3</b><span>pretos</span></div>
+        <div class="val"><b>↑</b><span>brilho (forte)</span></div>
+      </div>
+      <div class="dica"><b>Cada vídeo pede uma correção diferente.</b> Os valores acima são o ponto de partida do Eduardo, não uma receita fixa. O critério final é: deu acabamento sem parecer falso.</div>
+
+      <details class="transcr">
+        <summary>Transcrição — Vídeo 2: Camada de ajuste (color grading)</summary>
+        <div class="corpo">
+          <p><span class="ts">00:01</span>Aí tem esse ajuste aqui, né, que quando você clica aqui em ajuste, ajuste personalizado, você adiciona essa faixa aqui, que eu, por exemplo, usei aqui, porque aí eu consigo clicar — quando eu clico com o botão direito aqui, coloco intervalo, selecionar por clipe, para eu só exportar essa parte, eu divido ele por ajustes, né?</p>
+          <p><span class="ts">00:28</span>Mas a camada de ajuste tem — a coisa mais importante dela é que você coloca uma máscara de correção de cor. Cada vídeo vai precisar de uma correção diferente. Quando o vídeo tá muito sem cor, que não é o caso desse, eu aumento a saturação.</p>
+          <p><span class="ts">00:48</span>Se eu aumentar a saturação, por exemplo, aqui ele ficou muito rosa e laranja. Aqui em HSL eu consigo vir no laranja e tirar a saturação só do laranja. E aí o lábio dele tá muito saturado, ainda tiro a saturação do lábio dele, entendeu? Que é essa cor aqui. Então dá para mexer especificamente numas cores.</p>
+          <p><span class="ts">01:10</span>O lábio dele ainda tá muito saturado, né? Dá para tirar mais o lábio dele e aumentar um pouco do laranja porque ele ficou meio sem cor demais. Mas enfim, você vai vendo assim com o seu gosto, mas é tipo assim, para dar um tchan no vídeo, entendeu?</p>
+          <p><span class="ts">01:25</span>Uma coisa que eu sempre aumento é o contraste, mas não exagero também, senão vai ficar muito assim, vai ficar muito fake. Deixo aqui no 10, no máximo, dependendo do vídeo.</p>
+          <p><span class="ts">01:35</span>Sempre abaixo três de sombra, três de pretos, porque isso ajuda a dar uma profundidade no vídeo, tá?</p>
+          <p><span class="ts">01:51</span>Mas você viu que naquele, no caso desse vídeo aqui, ó, eu nem coloquei, né, a saturação — para mim não precisou porque esse vídeo já tá com uma cor legal.</p>
+          <p><span class="ts">02:02</span>Mas enfim, quando para você comparar como que tava antes e depois, você pode vir aqui nesse olhinho, ó, bem na linha aqui do ajuste, e clicar. Você vê, ó, como tá zoado comparado com o que tá agora, né? Tipo, deu um tchã.</p>
+          <p><span class="ts">02:18</span>Outra coisa que eu mudo bastante, além de deixar esses −3 de sombra e −3 de preto, que é para a sombra aumentar, né? Quanto menos você abaixa aqui, ó, mais sombra fica. Isso dá profundidade. Então, deixa um três. O preto a mesma coisa, ó. Se você deixar assim, ele fica muito branco; para cá, ele é muito preto.</p>
+          <p><span class="ts">02:34</span>Você pode dar uma explorada nessas coisas aqui para você sacar o que que faz. Às vezes o vídeo tem muito branco, já tá meio estourado branco — abaixa o destaque dele, que dá para abaixar um pouquinho. Mas é legal ter uma cor, dar um colorido no vídeo, porque isso chama um pouco de atenção, só que obviamente sem a gente deixar ele fake, né? Isso tem que ficar natural.</p>
+          <p><span class="ts">03:10</span>Beleza. E eu sempre comparo, né? Como tava antes ou como tá agora, entendeu? Para ver também às vezes, tipo, se não tá muito… porque às vezes você fica olhando muito tempo pro vídeo da cor que você deixou e seu olho perde a referência para sacar que “nossa, tá muito exagerado isso daqui, tá muito laranja, tá muito sei lá o quê”.</p>
+          <p><span class="ts">03:36</span>Aqui outra coisa que eu sempre aumento muito é esse brilho, que ele é quase um contraste, sei lá qual que é a diferença do contraste. Parece que ele é um contraste que muda só a parte escura. É legal também para dar uma profundidade, aumentar os pretos, tal, então eu deixo ele bem forte.</p>
+          <p><span class="ts">03:49</span>De resto, no padrão eu não uso, a não ser que um vídeo ou outro tenha alguma coisa diferente. Tipo aumentar a nitidez também, ó: fica meio duro às vezes, mas às vezes é legal colocar um pouquinho, porque os vídeos normalmente eles têm uma resolução meio baixa porque foi gravado no Zoom. Enfim, é isso.</p>
+        </div>
+      </details>
+    </div>
+
+    <h3>8.6 Etapa 6 — Legendas, silêncios e fade</h3>
+    <p><b>Vídeo-tutorial 3 · Legendas, fala vazia, fade in/out e o que cortar</b> — <b>é a parte que mais demora da edição</b>, e a que mais afeta a percepção de qualidade do Instituto.</p>
+
+    <div class="tut">
+      <h4>▶︎ Vídeo 3 — Legendas, fala vazia, fade in/out e o que cortar</h4>
+      <a class="ytcard" href="https://www.youtube.com/watch?v=rmCkT_91nQU" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span><span class="tx"><b>Legendas, fala vazia, fade in/out e o que cortar</b><em>Padrão de legenda, o que cortar e o fade de áudio</em><small>Abrir no YouTube ↗</small></span></a>
+
+      <h4 style="font-size:1rem;margin-top:18px">Passo a passo</h4>
+      <ol class="passos">
+        <li><b>Fonte.</b> Legenda simples, com a fonte padrão do sistema. Sem efeito, sem animação, sem karaokê.</li>
+        <li><b>Tamanho 10.</b> É o tamanho ideal da legenda. <b>Não 11.</b></li>
+        <li><b>Gere a legenda automática e revise tudo.</b> A automática do CapCut erra termos, não coloca acentos, não coloca ponto de interrogação nem vírgula. Ela é um rascunho — o “automático sabor automático”.</li>
+        <li><b>Português correto é regra da casa.</b> Acentuação, pontuação, maiúsculas. Se a legenda anterior termina com <b>ponto final</b>, a próxima começa com <b>maiúscula</b>; se termina com <b>vírgula</b>, a próxima começa com <b>minúscula</b>. Nem todo mundo cuida disso — nós cuidamos, porque o nosso perfil é intelectual.</li>
+        <li><b>Reticências</b> quando a fala dá a entender que há mais coisa e ele não completou.</li>
+        <li><b>Aspas</b> quando ele está imitando ou reproduzindo a fala de outra pessoa. Deixa claro que aquilo não é ele falando.</li>
+        <li><b>Nunca mais de duas linhas</b> por legenda, e nunca uma linha comprida demais. Quebre a linha quando precisar: a pessoa bate o olho e lê mais fácil quando o texto está agrupado do que espalhado.</li>
+        <li><b>Divida as legendas longas.</b> O CapCut muitas vezes joga duas frases no mesmo bloco — divida. Isso é muito comum e faz parte da revisão.</li>
+        <li><b>Exceção:</b> quando existe um <b>silêncio grande</b> com a legenda na tela, a pessoa tem tempo de ler tudo — nesses casos dá para deixar a frase inteira em um bloco só.</li>
+        <li><b>Corte pouco.</b> O pedido do Eduardo é que o vídeo fique <b>natural, com o menor número de cortes possível</b>. Espaços vazios e pausas <b>ficam</b>. Corte só gaguejo e coisas que ficariam feias no vídeo. Só corte um silêncio se ele for muito grande. <b>Não corte meticulosamente como se fazia antes.</b></li>
+        <li><b>Fade no áudio — obrigatório no fim.</b> Depois de terminar todos os cortes: selecione <b>tudo</b> → aba <b>Áudio</b> → aplique <b>fade in</b> e <b>fade out</b>, os dois. Isso evita estalos e cliques em cada emenda.</li>
+      </ol>
+      <div class="ficha coral">
+        <div class="ficha-tag">Terminologia na legenda queimada</div>
+        <p style="margin:0">A legenda queimada precisa bater com a terminologia oficial da Virtologia. O corretor automático não conhece <b>Virtologia</b>, <b>virtológico</b>, <b>Casarotto</b>, <b>Leis da Vida</b>, <b>Necessidades Humanas</b>. <b>Erro de legenda em termo oficial é erro de conformidade</b> — rode o checklist do Módulo 3 antes de exportar.</p>
+      </div>
+      <div class="valores">
+        <div class="val"><b>10</b><span>tamanho da legenda</span></div>
+        <div class="val"><b>2</b><span>máximo de linhas</span></div>
+        <div class="val"><b>Fade</b><span>in + out em tudo</span></div>
+      </div>
+
+      <details class="transcr">
+        <summary>Transcrição — Vídeo 3: Legendas, fala vazia, fade in/out e o que cortar</summary>
+        <div class="corpo">
+          <p><span class="ts">00:00</span>Aí a legenda: a gente tá usando legenda bem simples assim, com essa fonte padrão que vem do sistema mesmo. Sempre bom, meu. Tipo, eu assim — o CapCut, ele tem, como você sabe, a legenda automática, mas eu sempre mudo, porque a legenda automática dele erra termos, não coloca acentos, não coloca ponto de interrogação, vírgula. Tem que ter o português bonitinho, o máximo que você conseguir deixar de bonitinho o português, entendeu?</p>
+          <p><span class="ts">00:37</span>Eu coloco às vezes, se ele falar tipo — faz sentido, né? — colocar três pontos, quando ele tá trazendo informação assim que dá a entender que tem mais coisa, mas ele não falou. Enfim, é legal colocar tudo isso, tá?</p>
+          <p><span class="ts">00:55</span>E nunca deixar mais de duas linhas a legenda, e nunca deixar muito comprida. Tipo, ó, tá vendo que aqui eu dei um… eu podia ter deixado assim, ia dar na mesma, né? Mas às vezes esse “descansar” fica aqui na primeira linha e fica muito no limite, entendeu? Então é sempre bom quebrar a linha quando precisa, para esse daqui não ficar muito longo.</p>
+          <p><span class="ts">01:25</span>Às vezes eu colocaria “eu tenho que ir lá”, entendeu? Porque a pessoa bate o olho aqui, é mais fácil dela ler do que se a legenda tiver espalhada assim. Isso tudo é importante de você pensar, entendeu? Olhar para a questão de como a pessoa tá lendo, para ajudar na leitura da pessoa com relação à legenda. Tá bom?</p>
+          <p><span class="ts">01:55</span>Ah, essa coisa: a gente pôs ponto final aqui, próxima legenda vai começar com maiúscula. Se não tiver ponto final, se tiver vírgula, como aqui, essa legenda aqui não começa com letra maiúscula. Coisas de português assim que nem todo mundo preza por isso, mas como a gente tem um quê intelectual, acho que é legal usar.</p>
+          <p><span class="ts">02:14</span>Quando tem fala de outras pessoas, eu coloco aspas. Quando ele tá imitando, fala de outras pessoas, né? Tá imitando para exemplo falar de outras pessoas, eu coloco aspas para deixar claro que é sobre isso.</p>
+          <p><span class="ts">02:59</span>Aqui, para não ficar dois “dá na mesma” legenda, eu dividi, entendeu? Então o CapCut muitas vezes vai te dar os dois na mesma legenda. Eu divido. Isso é muito comum. Eu dividi uma frase que ele deu de uma vez só. Eu divido.</p>
+          <p><span class="ts">03:42</span>Só que aí, tipo assim, como aqui, embora seja uma frase longa, essas duas juntas… eu separaria normalmente, mas ficou um espaço vazio maior, ó. Não tem problema deixar esses vazios, tá?</p>
+          <p><span class="ts">03:58</span>A gente tá deixando esses vazios agora. Seria um pedido dele mesmo, para ficar mais natural, ter o menos corte possível. Você só corta muita gagueira, sabe? Coisas assim que você fala “não, vai ficar feio” no vídeo. Fora isso, você pode deixar os vazios.</p>
+          <p><span class="ts">04:20</span>Como teve um espaço vazio grande com a legenda aparecendo, ele dá tempo da pessoa ler tudo isso aqui, entendeu? Então eu deixei a frase toda; normalmente eu cortaria no meio.</p>
+          <p><span class="ts">04:33</span>Então tem esses pontos assim — eu tô falando tudo isso no sentido de você entender que, embora o CapCut tenha legenda automática, esse automático é naquelas, entendeu? É um automático sabor automático, porque você vai ter que ficar revisando a legenda. <b>É a parte que mais vai demorar da edição, e ela tem que tá bonitinha.</b></p>
+          <p><span class="ts">04:53</span>E menos cortes possível. Não precisa cortar os espaços vazios, a não ser que seja muito grande o espaço vazio, entendeu? Você vai no seu gosto, mas não precisa ficar cortando meticulosamente como a gente fazia antes. Eu fazia isso antes, não precisa mais, tá bom?</p>
+          <p><span class="ts">05:12</span>Ó, tá deixando claros espaços em branco. E é muito importante: depois que você acaba de cortar, você seleciona tudo, vem aqui em áudio, coloca aqui, ó, fade in, fade out, os dois — porque aí todo corte não vai dar ruim de fazer, né?</p>
+        </div>
+      </details>
+    </div>
+
+    <h3>8.7 Etapa 7 — Headline</h3>
+    <p><b>Vídeo-tutorial 4 · Headlines</b> — o texto no topo do quadro, que aparece no print de referência lá em cima. A headline é enviada pelo Eduardo ou pelo Rodolfo junto com a legenda do reels.</p>
+
+    <div class="tut">
+      <h4>▶︎ Vídeo 4 — Headlines</h4>
+      <a class="ytcard" href="https://www.youtube.com/watch?v=9nf7wRsrsyo" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span><span class="tx"><b>Headlines</b><em>Tamanho, respiro e regra de design</em><small>Abrir no YouTube ↗</small></span></a>
+
+      <h4 style="font-size:1rem;margin-top:18px">Passo a passo</h4>
+      <ol class="passos">
+        <li><b>Sempre coloque a headline.</b> Ela não é opcional — faz parte do padrão de todo vídeo publicado.</li>
+        <li><b>Use o texto enviado</b> pelo Eduardo / Rodolfo. Você não reescreve a headline.</li>
+        <li><b>Tamanho 10 ou 11</b>, dependendo da quantidade de texto. Nem tão grande, nem tão pequena.</li>
+        <li><b>Regra de design — respiro obrigatório.</b> Em qualquer composição de texto, imagem ou vídeo, <b>nunca deixe o texto sem sobra nas laterais</b>. Texto encostando na borda do quadro é proibido. Se a headline for grande demais e obrigar a diminuir a letra até ficar sem folga, o problema é o tamanho — ajuste a quebra de linha antes de espremer.</li>
+        <li><b>Limite inferior:</b> reduzir demais resolve o espaçamento mas prejudica a leitura. O ponto certo é o menor tamanho que ainda deixa <b>folga nas laterais</b> e continua legível no celular.</li>
+        <li>Lembre-se de que a legenda queimada usa <b>10</b> (Etapa 6). A headline pode ir a <b>11</b> quando o texto é curto.</li>
+      </ol>
+      <div class="valores">
+        <div class="val"><b>10–11</b><span>tamanho da headline</span></div>
+        <div class="val"><b>10</b><span>tamanho da legenda</span></div>
+        <div class="val"><b>Folga</b><span>nunca encostar na borda</span></div>
+      </div>
+
+      <details class="transcr">
+        <summary>Transcrição — Vídeo 4: Headlines</summary>
+        <div class="corpo">
+          <p><span class="ts">00:00</span>E é sempre bom você fazer essa aqui, ó. Deixar essa headline, que eu vou te passar também.</p>
+          <p><span class="ts">00:14</span>Não tão grande, não tão pequena. Aqui ela está muito grande, então teve que ficar com uma letra pequenininha.</p>
+          <p><span class="ts">00:23</span>Mas eu tento — o que eu gosto mesmo é quando a legenda ela fica no tamanho 10. Que é o ideal. Não 11, estava errado aqui: então é 10 que você deixa na legenda.</p>
+          <p><span class="ts">00:35</span>E aqui também, 10 ou 11. Dependendo do quanto de texto tiver, mas no caso aqui não deu. Se eu tivesse deixado, sei lá, nove, coube tudo — coube, mas está com muito, muito pouco de espaço.</p>
+          <p><span class="ts">00:55</span>Isso aqui no design é proibido. É todo design que você fizer: onde estiver texto, imagem, vídeo e tal, você não pode deixar sem sobra aqui — tem que ter uma sobra, tipo aqui, tipo esse daqui.</p>
+          <p><span class="ts">01:11</span>Então, no caso aqui, tem que ficar no mínimo assim. Mas também, se ficasse menor, fica ruim de ler, né? Isso depende da cegueira da pessoa que está vendo. E é isso. Acho que é isso. Qualquer dúvida, me chame.</p>
+        </div>
+      </details>
+    </div>
+
+    <h3>8.8 Etapa 8 — Do vertical para o YouTube (16:9)</h3>
+    <p>Quando o corte tem <b>5 minutos ou mais</b>, ele vai para o YouTube em vídeo comum (Módulo 7.4). Aí o formato muda: o YouTube normal é <b>16:9</b>, e o enquadramento que você montou para o Reels não serve. <b>A máscara feita para o vertical precisa ser retirada.</b></p>
+
+    <div class="tut">
+      <h4>▶︎ Vídeo 5 — Do Reels (9:16) para o YouTube (16:9)</h4>
+      <a class="ytcard" href="https://www.youtube.com/watch?v=rh_ZqHjTmKg" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span><span class="tx"><b>Do Reels ao YouTube</b><em>Como transformar o corte 9:16 em 16:9 e retirar a máscara feita para o Reels</em><small>Abrir no YouTube ↗</small></span></a>
+
+      <h4 style="font-size:1rem;margin-top:18px">O que muda</h4>
+      <ol class="passos">
+        <li><b>Proporção para 16:9.</b> O quadro deixa de ser vertical e volta ao horizontal, que é o formato original da gravação.</li>
+        <li><b>Retire a máscara.</b> Ela existia só para criar a bordinha e os cantos arredondados dentro do quadro vertical. Em 16:9 ela não faz sentido e precisa sair.</li>
+        <li><b>Reajuste zoom e posição.</b> O zoom que você deu para caber no vertical não é o mesmo que funciona no horizontal.</li>
+        <li><b>Aplique em todos os trechos</b> com <b>copiar atributos → colar atributos</b>, do mesmo jeito da Etapa 4.</li>
+      </ol>
+      <div class="dica"><b>Trabalhe em uma cópia.</b> Duplique o projeto antes de mexer na proporção, em vez de desfazer o que já está pronto para o Reels. Você vai precisar dos dois formatos — o vertical já foi para Instagram, TikTok e LinkedIn, e o horizontal é só para o YouTube.</div>
+      <p style="font-size:.9rem;color:var(--cinza)">O passo a passo detalhado está no vídeo. Legendas, color grading e headline seguem o mesmo padrão dos Módulos 8.5 a 8.7.</p>
+    </div>
+
+    <h3>8.9 Etapa 9 — Exportar e publicar</h3>
+    <ol class="passos">
+      <li>Confira que a proporção final é <b>9:16</b>.</li>
+      <li>Assista ao vídeo inteiro uma vez, do começo ao fim, <b>com som</b> — é onde aparecem estalos de corte e legenda dessincronizada.</li>
+      <li><b>Configure a exportação assim, sempre:</b> Resolução <b>1080P</b> e Taxa de bits <b>Superior</b>.</li>
+      <li><b>Confira a duração e decida o destino no YouTube</b> pela regra do Módulo 7.1: 5 minutos ou mais → YouTube normal; menos de 5 minutos → você encurta para no máximo 3 minutos e publica como Short.</li>
+      <li>Publique com a <b>legenda do reels enviada pelo Rodolfo</b>, sem reescrevê-la (Módulo 7.2).</li>
+      <li>Registre o que foi publicado, em qual canal e em que dia — você vai precisar disso no relatório de sexta (Módulo 9).</li>
+    </ol>
+
+    <div class="config">
+      <img src="data:image/jpeg;base64,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ooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoqSCNZbiON5VhV2CmR+iA9z7CvSfGPgbTI7Hw3Bod7Zy311bIiQxq2+9ZnI80E9vr6UAeZUV3cvwxLC8tdP8RabqGrWMZknsIS24AfeCkjBIpul/DX7boml6pe+IdP02DVBtgWfduZ84C4A/X3oA4aivRD8IbxLm606TXdNGswxtMtgrMXdBznOMDI5xWVoHgCXWvDUuu3Gr2WmWNvcGCZrjOUwAc8DnJIGKAOQortL34Zaouo6VDpV1bata6sSLa7gJCcctuz0wMn8DUl78NiNOvp9I8QadrNxpql7q2t9wdFHUjI+YCgDh6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAD0r2OK9srb/hBfFf26zex0q2W1uovNHnRsWYZ2dTjdn8K8cooA9yvb3VdMu9R1SPWvCdtp+ySS3uYYkeaYN0Xap3ZOcE1xPiO9gn8GeBES4iaSESGVFcExkyIfmHb8a4PFGKAPYRqVl/w0ZNeG+t/svkuPP85fL/49yMbs468VT0XRl8QfBq9s0v7a0mbWXeA3EgSOVgo+XceBkZIz6V5VgYxjitf/AISK5/4Q4+HPKi+zfa/tfmc7923bj0xQB6xomsaR4FsNA8N6jqltPcPJcPdTW7iRLXzEZV+Ye7fzrG0HRIPh7JrOtanrWm3ET2ktvaRWtwsr3LOMAlR0H1rymjAoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopQMsB6nFdr41+G1z4P0az1MX6X0FwQsm2PYYWK7lB5PUZ/KgDiaK3PEnhpvD0WkObkXH9p2a3YATbsyxG3qc9OtZdxYXdpGklxazQo/3WkjKg/TNAFeirKadeyIzpZ3DKq72IjJAHr06U02V0toLo20wtycCUodpP16UAQUVPbWV1esy2ttNcFRkiNC2PyqFlZGKspVgcEEYIoASiiigAooooAKKKKACiiigAooooAKKKKACiiigApVXc4X1pKfD/rloAtLEijG0H607Yv91fypa2/CPhw+K/EUWlLdC1MiM/mFN2MDPTIqgMPYv91fyo2L/dX8q3Nd8MXWi+L5NA3/AGibzEjjcLgSbsYIH41peOPAkngy7srf7cL9rtSw2RFcEHGOpzQByOxf7q/lRsX+6v5VYubK6s2Vbm2mgLcqJEK5/OnDTr5lkYWdwVjGXIjPy/XjigCrsX+6v5UbF/ur+VSRRSTyCOKNpHboqjJP4VesNNQ67a2WrGewhkkCyv5RLop7hcZNAGbsX+6v5UbF/ur+VXLuzVdWntLEy3SLIyRN5ZDOAeDt6ioZ7ae1l8q4hkhk/uupU/kaAIdi/wB1fyo2L/dX8qsz2F3bRLLPazRRv91njKg/QmoFVnYKqlmPAAGSaAG7F/ur+VGxf7q/lU9zZ3Nmyrc28sBYZAkQrn86k0zT59V1O2sbZcy3EixrwSBkgZOO3NAFTYv91fyo2L/dX8q1Ne0O40HXbjTJd0rQyGNZ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eJvH7a1oMOhaZpFvoukxyea0ELFjI3qTgUAcfXW6b4Cu77RXupZPIncZhiYdR/tema5a3nktbhJoiodDlSyhhn6Hitv/AITfxD/0EP8AyDH/APE0AYlxby2tw8E8bRyxnDK3UGo6uajqt5q04mvZRLIBjcEVTj8AM1ToAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWkoAUdKKB0ooAKKKKACrVrql/YKVtL64t1PURSsoP5GqtFNO2wmk9GaL+INZkQq+rXzKeCDOxB/Ws4kk5JyTRRQ23uJRjHZBRRRSKCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWkoAUdKKB0ooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWkoAUdKKB0ooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoozRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUV2/w+8LRarK+pXqb7eFtsaHo7e/sKuEHN2RjXrRoQc5HN2HhzWNTjElnp80sZ6Pjap/E4FX/wDhAvEv/QMP/f6P/wCKr2pVCqFUBVHAAGAKWu1YWPVngyzerf3Yo8U/4QLxL/0DD/3+j/8AiqP+EC8S/wDQMP8A3+j/APiq9rop/VYd2T/a1bsvx/zPFP8AhAvEv/QMP/f6P/4qopvBPiKBNz6XKR/sMrn8gTXukEEt1OkMKGSRzhVHetibwhq8NsZjCjYGSiuCw/z7VLw9OOjZrDMcTNXjBNLyf+Z8sSRvFIY5EZHU4KsMEU2vavF/hW317T5JEjCX0SkxuBgt/sn1rxZlKsVYYYHBB7Vy1aTps9XCYqOJjdaNbiUlLSVkdgo6UUDpRQAUUUUAKvLqPcV634mn0LQfE9rosPgOw1CGS3gdpFEglYuoJwQcZ/CvJE++v1Fe6aj8RpvD/wATLTTp7wNok1jBG/lkEwsyD5ww7g9fagDjdf8AhqT471TT9Jmhs9MsokuJp7uTalsHGdrH16jFZOofD2+tJdMe11Cx1Gx1OcW0N5byFoxIf4W4yO/r0rvtCt5NJl8WeF5Lqw1DVLqVLu0e/cPHeJwcE5+9gfmar3l1qumy+HNN1RdCsFm1WOdrGxwXj2n77MCVAOfX+tAHPN8HdYL3Ntb6rpNzqFqQZrRJ/njU/wARyOPXmsfxF4EutA0ODV4tSsNVsZZPJaWzkLhJPQ8V2GjXSj4reOZTcKA9pdhX3jDcrjB71g6TdR2/wRuC7KzR63FJ5e4ZICITx+FADbb4VajLFax3Wr6VYajeIJILC4mxM4PTIxwTWLrfgzU9A0K21S98sJNPJbPGpO+GRCQVbjHYnivQte8Kz+LPHln4r0zU7I6NN5E7zvcKhthGF3KVJzn5e3rV2y1LSviJrvifQnuYks5LyG+tZJCFDbNqPjP94KDQB543w61n+1tK0yNreS71K2F3s3EfZ4/WQkcd+melO1X4f3Nlo02qafq+m6zbWziO5NnLuMJJwCRjpnvXY6F4xsr/AOMOuTTzQR297bSWFm8/+qAUbUDezY5+po1l9d0Hwpqa31t4a0mO6KQeVa4aW5G4crtJxjGeaAON8VfD668IWZl1DVtOe4LKEtYpCZXUj7+CBgA8VleF/DV34s1xdLsZIo52jaQGUkLhR04Fb3xdlWb4lXzJIsi+XEAVbI+4Kf8ACGZIPHyu8ixgWk2GZgOdtAErfCa/Nn9sh13RZ7SFil3Otz8lqR13HH4cd/zqtcfC/WI/ENjpltdWV3Hfwm4hvI5P3Plj7zE+3tnrUnh+cL8HPFkZlAZ7m3+Uty3I7d67Dw/ZaNrGjeCrXVZYpDHYXLRQvNsEkgk+VGOeARnigDgtd8BXGkaMmrWmq6fq9gZhbvNZybhG56A1Z1n4Y6lovkQy6jp8+oXTolvZQyEzShv4gCBgCu216C4i+FWqWt3aaPpt5HdwzmxsJFPlx7gAWwTk/j0rM1zW7PSv2gbHUrqZTaRJArSA7ggMW3P4ZzQBz9/8LtQs7O9eDWNJvbvT4zJdWcE+ZYgOvGOcU3Sfhlealp9jPPrOlafPqS7rO1uJsSTDtwOmfxq5rvw7vbObW9Yu9asYNP8A3k0EyziQ3W5shAqnPOe/pXYaFpVhp1j4cvdIs9GmsDGkt9ql9OGlhfPKqpbj2wOp7UAeLahYXGl6lcWF2nl3FtIYpFznDA4NdDoHgO61nRH1m51Kw0jTRJ5ST3smwSP6L/j/AIU34kxlPiTrh3KyyXLSKVYMCrcg5Hsa6W20qXxv8KNG07R7i3OoaRPL59pLMsZYOSQ43EDv/OgC9q3h/T/D998PLXVYbERky/bJQQY5l3LhmbuMHqfWqfhTwvaL4ik8T38ulQ6T9sljsYrq4EaTSBjtwMHKj9cVW+J1qmn+FvB2nC+hvZLS2njkeFw6hgyZGfQHI/CtTwpotq3w/wBPvtHsNJ1HUZJnF9JqU422agnBCFgOmD3zQBzV54I8Raz8RNQ0q4W1S9GbmeYHbAkZ53AgcLg8DFN1H4b3Vn4fvtbtdZ0vUtPsgN8lrKWJYsBtxjg85+lejavf6c/xB1qwm1G2t4tf0WOG1uw4Me4Z4JHQGudtPDT+GfhT4whudSs7m5lWHdDay+YsYDjBY9MnsPSgDhtS8JX2l6zpemSywNNqcUMsRUnaolOFB47d61Lb4bXz32qx3mqadp9ppUogmu7iQrGXIyAvGT19q7O48PS+LNZ8I+I9OvLM6da2tst27zqrQGIgsCpOSeo4p9rbaXr8/ifWdIs9P1rVn1HbFb3s4SJYcY8wKSAenWgDzPxT4VvPCeoQ291LBcR3MQnguIG3Ryoe4NZFvbyXVzHBEMySMFUe5r0j4wgS2vhmZJbKRUtGgf7GwMayBvmVQOgFeZqzI4ZWKspyCOopq19QPSIfh3pogQTSztLgbiGwM07xP8K/7I8Mx6rbSFjIpdVMgbKjrxVbQfGb3emvbXDKL+Nf3bsMiQd+MjJA7d61vE17Dpfh6G71DVLXVTdL/oFrasQjr3lmB5GDxs9ete7XnglSThHfy1+/oyYt7M8nopWO5ixxknPFJXglBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV7R8P9n/CFWezrl9313H/61eL13nw68Tw6e76VeybIpW3Queit3B+tdGHkoz1PNzKlKpR93o7nqNFJ1GRyKWvTPlAooooA6rwEIjqVyW/1ojGz6Z5/pXeV49a3U1lcpcW8hjkQ5BFbc3jXVZrcxAxRkjBdV5/+tXHWoSnK6PbwWPp0aXJNaop+IxEviS8EP3d/b17/AK18266Ix4h1ARf6sXD7fpuNeweLPE8Gg6bIxk3XsoIiTOTn+8favEXdpHZ3OWY5JPc1GIaSUOx0ZZCUpTrNWTEpKWkrjPaFHSigdKKACiiigAoAAGAMUUUAIAB0AFKRknPOevvRRQAmBjGBgUuBnOOaKKADHBHr1oIB6gGiigAo6nJ5PSiigAAAGAMUEA9RmiigAwM5xzSYHoOaWigAIBOSMn1oAAGAMUUUAHp7dPajH+NFFAAAAMAYo6HI4NFFAAAB0GKMdffrRRQBteF/Ekvhe/mnjsrS9huIjDNBcpuR1PX3B9xWlrHjhLvw7Joej6JaaJYTyCW4WAlmlI6Ak9vauTooAOxHY9feiiigAAA6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA2dP8W65pcQitr9xGvRHAcD86v/8ACxvEv/P3D/34T/CuXoq1UmtmYSw1GTu4L7jqP+FjeJf+fuH/AL8J/hR/wsbxL/z9w/8AfhP8K5ein7Wfcn6rQ/kX3HUf8LG8S/8AP3D/AN+E/wAKjm8f+I502m/Ce8caqf0Fc3RR7Wfcf1WgvsL7iSe4muZmlnleWRuSznJNR0UVmbpW0QUlLSUDFHSigdKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAop6xSOMqhIp32eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRUv2eb/nm1H2eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRUv2eb/nm1H2eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRUv2eb/nm1H2eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRUv2eb/nm1H2eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRUv2eb/nm1H2eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRUv2eb/nm1H2eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRUv2eb/nm1H2eb/nm1AEVFS/Z5v+ebUfZ5v+ebUARUVL9nm/55tR9nm/55tQBFRT2ikQZZCBTKACkpaSgBR0ooHSigAooooAKKVRl1B7kV6n4lHgvw34kttEk8G/a/NggkaaK9lWQl1B4XOM0AeV0V3uu/DS6Xx3qGj6KVNnaxJcvPdSBFgRhkB2Pft+FZGr+Ata0mSx2i3v4dQk8q2ntJRJHI/wDdyOhoA5miux1X4Za3pWm3d20+n3RsRuu4be4DyQD1ZaZo/wAN9a1fS7fUDNY2EN2cWwvLhYmn/wB0HtQByNFd5pfhf+z/AA142g1nT0XUdNgiMZcZMZLHlT6EYrm9S8M6hpV1plvcCLzNUhjngCvn5XOFz6HNAGPRXV23w512513UdMxbQ/2Zj7VcyzBYY8jI+Y1q6N8P9Z0nxlpyXOk2mtQTo80RWcNbSKB95n6YGQcUAef0V6X8RNH8nw/ZXVl4f0eCKa4xNeaZOJlaXGPLAH3R3wO9ZY+E3iMwY3WAvvL83+z/ALSv2jb/ALvr7UAcRRTnRo3ZHUq6khlIwQfSm0AFFFFABRRRQAUUUUAFFFFABUkKh50U9CajqW1/4+k+tAGmBgYHSiiug8IaRpeqajPLrV6LTTrKPzpcfek5wEX3NAHP0V6j4g8DaRe+OfDum6PbmxtNStvtEuGZiFHJPzE4OOPrVi30bwT4l1bU/DOmaZLY3tmj+ReeazeYyHDZBPr/AFxigDyaivQvBXh3TD4Y1jWdQ0uTWbywmEK2MbHjplsDk9T+AqXxV4T065sfD17pmnSaNd6tMIGspWJ25/iweR/9cUAecUV662i+BLfxXH4LfTJnuWURnUPNO7zSMjjOP0xWfoXhfRdJ0jxTPrum/wBpSaLceWoErJuGPYigDzKivQtW0Pw3rfw/ufEug2FxpcllKI5IZJC6P0zgkn17V57QAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUABAYYIyDWTIuyRl9Ditasuf/j4k/wB40AR0lLSUAKOlFA6UUAFFFFADk/1i/UV71qHj1tB+J1npF8YV0uaxgQS+Uu+B3QYfdjkA9j614HSkknJJP1oA9u0WxvrJvGPhrUY4NZ1ueWO5ijvJCovouCMEHk4Gce/pWfqra3pumaHpUtho3hVp9SWeCPzmZ4XXOHYZOFOcV5EHcOGDMGHQ55FDyPI5Z3Z2PUscmgD2fxToDX/hrxDqfiPQLbRdQgj3w6jaT4jvnzwNmec+/NZvifwxqvj2x8N6n4aVbq0jsY7V0WQA2sik5LAnjqPfj6V5W00roqPI7KvQFiQKElkjBCSMobghTjNAHt3ibULW/sPG8drOlybPSrW2lmQ5DyKzbjnv1x+FZ194X1LxfJ4K1jR40ubK3tIIbmQSAeQ0bbm3f57V5ACQCATg9ack0kalUkdVbqAxANAHtGrMnjPT/GmjaDPHNqDaklykYcA3MaqFIU98FT+dZfhf4fz2Wt2tn4hv99wbKWaDSYroo5I/5ZsQcAN6D1rzrw9fwaX4hs764NwsdvIJCbfbvBHTG7jr61oeNvEVr4m8VS6rY2bWSOqgg4DOw6uccZNAHq8sR0fwBFNfaDa6IllrNtdz2UEvmNFEG++/J5/nis8+D9Z/4XD/AMJX58X9h+f9t/tLzl8vysfdzn0+WvGGkd2LM7MW6knOaXzZPL8vzG2f3cnH5UAaHiW9g1LxVql7aj9xcXUkkfGMqWJB/HrWZRRQAUUUUAFFFFABRRRQAUUUUAFS2v8Ax9J9aiqW24uU+tAGnRRRQB7Vqer2+iePPBV1duI7dtLETueihhgE+2cU3RPCcvg/xlq/ifU7iCPSo1lkglDgmTecgY/T34rxgknqSfrTmlkeNUaR2ReiliQPwoA9a8Fy3l14C1afwu0KeI57tpJg23zBGWyMZ46H6das+I76bSdB8NX/AIpaF/ENpfJJ+7xv8kEk5A9sfj+NeNxySRPvjdkYd1ODQ8jyuWkdnY92OTQB7VN4OlufijD4uju7c6FuW9Nz5gwMDp+dQ6T4kV9D8da9axRTp9q8yJJl3IwxgZHevHPNkEXleY/l5zt3HH5U3JAxk4PagDpvEPxA1nxJpy6fcC2trJSG8m2j2KxHTPJrmKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAO88DeJ9Bi0qXwz4m0+N9OupfMW6VfnicjGSev4jp9K29V1Twh8PtFutJ0BYdb1S+iKS3cm2RERu2Rx07DvjNeUUUAAGBisuf/j4k/3jWpWXP/x8P/vGgCOkpaSgBR0ooHSigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApVYqwYdRSUUAXkvk2/OCD7U77bF/tflWfRQBofbYv9r8qPtsX+1+VZ9FAGh9ti/wBr8qPtsX+1+VZ9FAGh9ti/2vyo+2xf7X5Vn0UAaH22L/a/Kj7bF/tflWfRQBofbYv9r8qPtsX+1+VZ9FAGh9ti/wBr8qPtsX+1+VZ9FAGh9ti/2vyo+2xf7X5Vn0UAaH22L/a/Kj7bF/tflWfRQBofbYv9r8qPtsX+1+VZ9FAGh9ti/wBr8qPtsX+1+VZ9FAGh9ti/2vyo+2xf7X5Vn0UAaH22L/a/Kj7bF/tflWfRQBofbYv9r8qPtsX+1+VZ9FAGh9ti/wBr8qPtsX+1+VZ9FAGh9ti/2vyo+2xf7X5Vn0UAaH22L/a/Kj7bF/tflWfRQBofbYv9r8qPtsX+1+VZ9FAGh9ti/wBr8qPtsX+1+VZ9FAGh9ti/2vyo+2xf7X5Vn0UAaH22L/a/Kj7bF/tflWfRQBofbYv9r8qPtsX+1+VZ9FAGh9ti/wBr8qPtsX+1+VZ9FAGh9ti/2vyo+2xf7X5Vn0UAXnvl2nYDn3qkTk5PU0lFABSUtJQAo6UUDpRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSUtJQAo6UUDpRQAUUUUAFFSW8QnuYoTIkQkYLvc4VcnqT6V3SfCe5lsZb2PxR4de0hYJJMLpiiE9ATt4NAHA0Ve1fTDpWpz2Yura9WHGZ7Vy8TcdmxVGgAoo7ZpSpXGQRnpkYzQAlFFXdH019Y1mz09X8o3cywiQrkKSaAKVFXta0xtG1++0tpBM9ncPbl1GN5ViMgfhVEggkEYI7GgAora8KeHJPFeujTIrhLd2ieUOy7h8ozisYggAkHB6HHWgBKK308LG7bRINN1K1vrzVuDbocNbtnGHP61kX9lLp2p3NjKVaW2leFiuSCykg49uKAK9FKQQSCCCOxpKACiiigAooooAKKKKACnIpdwo6k4ptS2v/Hyn1oAupaRKuCu4+ppfs0P/ADzFS1d0jSbvXNVg06xj8y4nbCgnAHcknsAKAM37ND/zzFH2aH/nmK9BufhPqiW9x9j1PTr+7tVLS2sMh8xcfUfzxXCEEdQR9aAIfs0P/PMUfZof+eYqXBGeDxSkEYyCM8jI60AQ/Zof+eYo+zQ/88xUwUsCQpIHXA6UnbPagCL7ND/zzFH2aH/nmK39N0K2vtA1TUJ9VhtJrFQY7aQfPPn05/xrGwSpbB2jvjigCH7ND/zzFH2aH/nmKl7Z7UpBBwQQfegCH7ND/wA8xR9mh/55ipaKAIvs0P8AzzFH2aH/AJ5ipaKAIvs0P/PMUfZof+eYqWigCL7ND/zzFH2aH/nmKlooAi+zQ/8APMUfZof+eYqWigCL7ND/AM8xR9mh/wCeYqWigCL7ND/zzFH2aH/nmKlooAi+zQ/88xR9mh/55ipaKAIvs0P/ADzFH2aH/nmKlooAi+zQ/wDPMUfZof8AnmKlooAi+zQ/88xR9mh/55ipaKAIvs0P/PMUfZof+eYqWigCL7ND/wA8xR9mh/55ipaKAIvs0P8AzzFH2aH/AJ5ipaKAIvs0P/PMUfZof+eYqWigCL7ND/zzFH2aH/nmKlooAi+zQ/8APMUfZof+eYqWigCL7ND/AM8xR9mh/wCeYqWigCB7SJlIVdp7EVnkFWIPUVr1lz/8fEn+8aAI6SlpKAFHSigdKKACiiigAru9D/5If4o/6/rf+a1wla9p4jurPwpf6BHFCba/lSaRyDvUrjABzjHHpQB7D4Za+09vDmm358P6Pa3UaIdMaLzri8Dfxk4O0n61heFNMtNU8T+KvBlzZL/Y7SyTC4UANZsrcEMegPTHt9a5+H4r6pFHZStpWlTalZRrDFqEkJaYIOMdcdOM4rO1Lx/qF/puq2cdlZWK6vcfaLqS3Vg7/wCxksfl9v8AGgDrNWS7n+MVjolh4etpoNIXyrWznwiSIFz5rsOufvd+grV8Qkaz8OPEh1HUdG1W60943ibT4An2Ulj8m7Az0x+Brg4/iVrMd/o9/wCTaNe6VEYFuGQl54yMbZOcEYz0weamu/iZdz6RqGlW2h6RZWF+hWWKCFl+Yn7+d2d36e1AHLaPaR3+uWFpKcRz3EcbHOOCwBr1+bxdPp3xeg8K2+lWK6Pb3KWqW4tl38AYkDYznv8ASvFkdopFkRiroQysOoI6Gu9T4uamJ4L59H0iXVolCf2g8B81lHY845HGaAOvs7K0sJvG3iH7VYWd+NZktYru9i81IFLkkhcHk56+1cv8Q77R9T8M6ZcDUtO1DXYpWjmnsoTEJY8cEjAGQaxNO+IWpWGq6vdPa2d3baxK013ZToWhZiSeBnIxk96p+JPFtx4jgtbX7DZadZWefJtrSLYqk9SSckmgDd+DWP8AhZNvld4+zzZX1+XpW74Y8Ry+O5da0DVtOsUsBZSz24it1Q2hT7uGAz+fpXnvhjxJeeE9cTVbGOGSdEZAJQSvzDGeCK3b34m6hc6XeWtrpWl6bNqC7bu6tYSkswPXPOBnvigDs9BvZNMuPhutokMf26F4p28pSzL5p74yD79apaX4qtX+IviKTXZbe3mi860sL17RXitSJGALqBgnpyfTrzXDf8JpqQHh/wAuOCNtAGLZlU5b5t3z5PPpxjitZvife/2xdXqaLpKQ30fl3lp5RMVwc53Nk53e+aALPxMTVWs9IudRGkXsUofydU09dv2kccMBgZHHbv1rz+uh8TeMLnxJbWVn9is9OsLEN5FraIVRS3U8knPFc9QAUUUUAFFFFABRRRQAVLa/8fSfWoqltf8Aj6T60AaddD4GvNT07xZbXmlafJqE8IJaBASWQjB6dPrXPVo6Fr1/4c1VNQ06Xy51BU5GVZT1BHcUAekWuneFvHt3qUmhSahomutG8sqFiFc5+bOD0z16H2rM8Y2qr4R8DlIFDyKVYqoyzZXgnvVW6+K+pPbXC2Wl6bp1zcrtluYIyJDnqRk8VW0P4manouj2+mvY2OoQ2p3W7XKEtF9CDQB6ZNDaQfEDxY50+C4SHTIZBB5YwxwxxjHeuUtdVPjr4aeIJtVs7SOfTB5tvPDCI9vGdvH0x9DUXgnxlLLqXijWtSvYIr6e1DQh8BSy7sKoPUDjiud1r4iajrGhNpMdjY6dazHdOtrGVMp688+tAHpU/wBg8JQ6LY22qaRplq0CSzxXVv5kl1nqd2KqWM+h6ZH421PR7a0vLS3WKeJGQFA+0kjnoN3auH074nanZ6ZbWl1p+n6k1mMW811GWeMduQRmqLeO9VlttchljtpDrePPcoQUwCBtwQB175oA7DwlL/wlfhzxZc6jHAJbuSBWZIwoQHj5fTitPUPETaP8S7Xwha6RZDSP3cDQmAFpAy53Z9s/oa8w0rxTe6PoOpaVbRwmLUdu+Rgd6behUg4/MGuii+LWsJHFJJp+mz38SeWl7JCTKB69cZoA6nRbLT/DeoePBDZwXMFhskiilUMo4LBeewJ/SvKda1i417VptRuliSabbuESbVGAAMD6CtCx8Y6lZWmswERXDayMXEsoJYHJORggd++awKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA7Xwj4Es/GHh66Nlqyx67C5K2cmAjx49euSe/Qdx3q7bfC86d4ZvNY8WX39jhEIt4Bhnd+2R6H0HPOeO/B2d5c6feRXdpO8FxE25JEOCpq/r3iXV/E94tzq141zIihVGAqqPZRwKAModOay5/8Aj4k/3jWpWXP/AMfEn+8aAI6SlpKAFHSigdKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACnxP5cqt6GmUUAa6sHUFTkGlrIBI6EijcfU/nQBr0Vkbj6n86Nx9T+dAGviisjcfU/nRuPqfzoA16KyNx9T+dG4+p/OgDXorI3H1P50bj6n86ANeisjcfU/nRuPqfzoA16KyNx9T+dG4+p/OgDXorI3H1P50bj6n86ANeisjcfU/nRuPqfzoA16KyNx9T+dG4+p/OgDXorI3H1P50bj6n86ANeisjcfU/nRuPqfzoA16KyNx9T+dG4+p/OgDXorI3H1P50bj6n86ANeisjcfU/nRuPqfzoA16KyNx9T+dG4+p/OgDXorI3H1P50bj6n86ANeisjcfU/nRuPqfzoA16KyNx9T+dG4+p/OgDXorI3H1P50bj6n86ANeisjcfU/nRuPqfzoA16KyNx9T+dG4+p/OgDXorI3H1P50bj6n86ANeisjcfU/nRuPqfzoA1XdY1LMcAVlu2+Rm9TmkJJ6nNJQAUlLSUAKOlFA6UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUlLSUAKOlFA6UUAf//Z" alt="Tela de exportação do CapCut com Resolução 1080P e Taxa de bits Superior">
+      <div class="txt">
+        <b>Tela de exportação — as duas configurações que não mudam.</b>
+        <p style="margin:8px 0 0"><b>Resolução: 1080P.</b> Abaixo disso o vídeo perde definição no feed, ainda mais depois da compressão que a rede aplica.</p>
+        <p style="margin:8px 0 0"><b>Taxa de bits: Superior.</b> É o que preserva a qualidade da imagem depois que a plataforma recomprime o arquivo. Deixar no padrão entrega um vídeo visivelmente pior.</p>
+        <p style="margin:8px 0 0">Confira as duas <b>toda vez</b> — o CapCut nem sempre guarda a última configuração usada.</p>
+      </div>
+    </div>
+
+    <h3>8.10 Um exemplo real, do começo ao fim</h3>
+    <p>Este vídeo mostra uma edição inteira acontecendo — não uma etapa isolada, mas o processo completo com as decisões sendo tomadas ao vivo. <b>Vale assistir antes da sua primeira edição</b>: ele amarra tudo o que os outros cinco explicaram em separado.</p>
+    <a class="ytcard" href="https://www.youtube.com/watch?v=D9JRtHwaQTY" target="_blank" rel="noopener noreferrer"><span class="play" aria-hidden="true"></span><span class="tx"><b>Exemplo real de edição de Reels</b><em>Uma edição completa, do arquivo bruto ao vídeo pronto</em><small>Abrir no YouTube ↗</small></span></a>
+
+    <div class="check">
+      <h4>Checklist de edição — rodar antes de exportar</h4>
+      <ol>
+        <li>Todos os timestamps da lista foram <b>marcados</b> antes do primeiro corte?</li>
+        <li>O número de marcadores bateu com o número de pontos da lista?</li>
+        <li>Os trechos vermelhos foram removidos e só os azuis ficaram?</li>
+        <li>Proporção em <b>9:16</b>?</li>
+        <li>Zoom e posição conferidos ao longo de <b>todo</b> o trecho (ele não sai do quadro)?</li>
+        <li>Máscara aplicada com bordinha visível e arredondamento até 10?</li>
+        <li><b>Copiar atributos → colar atributos</b> em todos os trechos?</li>
+        <li>Camada de ajuste: contraste ≤ 10, sombras −3, pretos −3, brilho reforçado — comparado antes/depois pelo ícone de olho?</li>
+        <li>Legendas revisadas termo a termo, tamanho 10, máximo 2 linhas, pontuação e maiúsculas corretas?</li>
+        <li>Termos oficiais da Virtologia escritos corretamente (checklist do Módulo 3)?</li>
+        <li>Headline aplicada, tamanho 10–11, com folga nas laterais?</li>
+        <li><b>Fade in e fade out de áudio</b> aplicados em tudo?</li>
+        <li>Se o corte vai para o YouTube em 16:9: proporção alterada, <b>máscara retirada</b> e enquadramento refeito?</li>
+        <li>Exportação em <b>1080P</b> e taxa de bits <b>Superior</b>?</li>
+        <li>Assistiu ao vídeo inteiro com som antes de exportar?</li>
+      </ol>
+    </div>
+
+    <div class="ficha ouro">
+      <div class="ficha-tag">O princípio por trás de tudo isto</div>
+      <p style="margin:0">Cortes mínimos, silêncios preservados, português impecável, cor natural. <b>A edição do Instituto não tenta prender a atenção por estímulo — ela sustenta o raciocínio.</b> Um vídeo bem editado aqui é aquele que parece que ninguém editou.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mod" id="m9">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">9</span><h2>Relatório semanal</h2></div>
+    <p class="lead"><b>Uma vez por semana</b> você levanta os resultados dos posts e entrega ao Eduardo. É um levantamento de números, não uma análise de marketing — você reporta o que aconteceu.</p>
+
+    <h3>9.1 O que entregar</h3>
+    <table>
+      <tr><th>Dado</th><th>Detalhe</th></tr>
+      <tr><td><b>Curtidas</b></td><td>Por post.</td></tr>
+      <tr><td><b>Comentários comuns</b></td><td>Comentários normais — perguntas, elogios, discussões.</td></tr>
+      <tr><td><b>Comentários com a palavra-chave</b></td><td><b>Contados separadamente.</b> São as pessoas que comentaram a palavra que a legenda pediu no CTA. Toda legenda tem uma. Este número é o mais importante do relatório.</td></tr>
+    </table>
+    <div class="ficha">
+      <div class="ficha-tag">Por que separar os dois</div>
+      <p style="margin:0">Comentário comum mede <b>conversa</b>. Comentário com a palavra-chave mede <b>quantas pessoas quiseram receber alguma coisa</b> — é o número que mostra se o conteúdo está gerando interesse real. Somar os dois esconde exatamente a informação que interessa.</p>
+    </div>
+
+    <h3>9.2 Como levantar</h3>
+    <p>Dois caminhos, os dois valem:</p>
+    <ol class="passos">
+      <li><b>Conectar o seu Claude ao Instagram do Instituto</b> e pedir que ele leia os dados de cada post. Mais rápido e menos sujeito a erro de digitação.</li>
+      <li><b>Manualmente</b>, abrindo post por post e anotando na planilha. Funciona igual, só dá mais trabalho.</li>
+    </ol>
+    <div class="dica"><b>Se usar o Claude:</b> confira por amostragem. Pegue dois ou três posts, compare o que ele reportou com o que aparece no aplicativo e só então confie no resto. Número errado no relatório é pior do que relatório atrasado.</div>
+
+    <h3>9.3 Modelo de planilha</h3>
+    <table>
+      <tr><th>Data</th><th>Canal</th><th>Link do post</th><th>Curtidas</th><th>Coment. comuns</th><th>Coment. c/ palavra-chave</th></tr>
+      <tr><td>—</td><td>Instagram</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>TikTok</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>YouTube</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>LinkedIn</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    </table>
+    <p style="font-size:.85rem;color:var(--cinza)">Estrutura sugerida</p>
+
+    <h3>9.4 O que enviar junto</h3>
+    <ul>
+      <li>As <b>10 melhores perguntas e objeções</b> que apareceram nos comentários e nas DMs da semana.</li>
+      <li>Qualquer comentário ou mensagem que você não soube responder — para ser resolvido antes de virar problema.</li>
+      <li>Observações do que você notou aplicando o <em>Stories 10x</em>.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="mod" id="m10">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">10</span><h2>Rotina: dia, semana, mês</h2></div>
+    <p class="lead">Se você seguir esta tabela, o trabalho está feito. Ela é o resumo executável de todo o guia.</p>
+
+    <h3>10.1 Todo dia</h3>
+    <table>
+      <tr><th>Tarefa</th><th>Detalhe</th></tr>
+      <tr><td><b>Responder todos os comentários</b></td><td>Em todas as redes. Comece pelos vídeos de <b>cerca de um mês atrás</b> e avance até os de hoje. Nenhum comentário fica sem resposta. (Módulo 4)</td></tr>
+      <tr><td><b>Responder todas as DMs</b></td><td>Meta de menos de 24 horas. (Módulo 5)</td></tr>
+      <tr><td><b>Editar os vídeos do dia</b></td><td>Com base nos timestamps e no arquivo bruto do documento da semana. (Módulo 8)</td></tr>
+      <tr><td><b>Publicar</b></td><td>Instagram e TikTok todo dia; LinkedIn e os dois canais do YouTube conforme o Módulo 7. Confira a linha do conteúdo (Virtologia ou Humanização) para saber em quais perfis ele entra. Legenda copiada e colada.</td></tr>
+      <tr><td><b>Postar os stories</b></td><td>Conforme a indicação do Eduardo, aplicando a técnica do <em>Stories 10x</em>. (Módulo 6)</td></tr>
+      <tr><td><b>Estudar o <em>Stories 10x</em></b></td><td>Um bloco por dia até terminar o curso. Faz parte do expediente. (Módulo 6.1)</td></tr>
+    </table>
+    <div class="dica"><b>Sugestão de ordem</b><b>:</b> comece pelas <b>DMs</b> (é onde alguém está esperando resposta agora), depois <b>comentários</b>, depois <b>edição</b>, depois <b>publicação e stories</b>, e feche o dia com o <b>estudo</b>. Resposta atrasada custa mais do que post atrasado.</div>
+
+    <h3>10.2 Toda semana</h3>
+    <table>
+      <tr><th>Tarefa</th><th>Detalhe</th></tr>
+      <tr><td><b>Abrir a guia nova do documento</b></td><td>Publicada todo domingo. É de onde sai tudo o que você vai fazer na semana: timestamps, arquivos, imagens e legendas. (Módulo 7.1)</td></tr>
+      <tr><td><b>Relatório de resultados</b></td><td>Curtidas, comentários comuns e comentários com a palavra-chave, por post. Entregue ao Eduardo. (Módulo 9)</td></tr>
+      <tr><td><b>10 melhores perguntas</b></td><td>Enviadas junto com o relatório — viram pauta.</td></tr>
+      <tr><td><b>Conferir a frequência</b></td><td>Bateu 3–4 posts no LinkedIn? Pelo menos 2 no YouTube da Virtologia e 1–2 no da Humanização? Instagram e TikTok todos os dias, nos perfis certos? Se faltou, ajuste na semana seguinte.</td></tr>
+      <tr><td><b>Alinhar com o Rodolfo</b></td><td>Dúvidas acumuladas, termos a confirmar, o que precisa de validação.</td></tr>
+    </table>
+
+    <h3>10.3 Todo mês</h3>
+    <ul>
+      <li><b>Auditoria de conformidade:</b> pegue 10 publicações do mês e rode o checklist do Módulo 3 nelas. Achou erro de termo ou promessa? Corrija e avise.</li>
+      <li><b>Revisão de DMs sem resposta:</b> ninguém pode ter ficado para trás.</li>
+      <li><b>Balanço do que você aprendeu</b> no <em>Stories 10x</em> e o que já está aplicando.</li>
+    </ul>
+
+    <div class="ficha ouro">
+      <div class="ficha-tag">Se um dia não der para fazer tudo</div>
+      <p style="margin:0">A ordem de prioridade é: <b>1) responder DMs · 2) responder comentários · 3) publicar · 4) editar · 5) estudar.</b> Conteúdo atrasa e ninguém percebe. Pessoa sem resposta percebe na hora — e essa é a única parte do trabalho que só você faz.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mod" id="m11">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">11</span><h2>Livros e preços</h2></div>
+    <p class="lead">A referência oficial para responder qualquer pergunta sobre livros. <b>Responda sempre a partir desta tabela</b> — nunca de memória, nunca com valor arredondado, nunca com desconto improvisado.</p>
+
+    <div class="ficha">
+      <div class="ficha-tag">Frete</div>
+      <p style="margin:0"><b>+R$28 para todo o Brasil, em todos os títulos físicos.</b> A única exceção é o <em>Fundamentos da Virtologia</em> físico, que já sai com <b>frete incluído</b> no valor.</p>
+    </div>
+
+    <h3>11.1 Livros físicos</h3>
+    <table>
+      <tr><th>Livro</th><th>Para quem</th><th>À vista</th></tr>
+      <tr><td><b>Fundamentos da Virtologia</b> físico + aulas DNT + exercícios</td><td>Terapeutas e profissionais de saúde</td><td><b>R$297</b><br><span style="font-size:.85em;color:var(--verde-esc)">frete incluído</span></td></tr>
+      <tr><td><b>Manual de Desenvolvimento Humano em Virtudes</b></td><td>Terapeutas e estudantes da metodologia</td><td><b>R$225</b><br><span style="font-size:.85em;color:var(--cinza)">+ frete</span></td></tr>
+      <tr><td><b>Guia das Virtudes</b></td><td>Pais, educadores, psicólogos infantis</td><td><b>R$176</b><br><span style="font-size:.85em;color:var(--cinza)">+ frete</span></td></tr>
+      <tr><td><b>Sistemas Humanizados: Humanização 2.0</b></td><td>RH, gestores, SST</td><td><b>R$279</b><br><span style="font-size:.85em;color:var(--cinza)">+ frete</span></td></tr>
+      <tr><td><b>Teimosia de Viver</b> <span style="color:var(--cinza)">(+ audiobook)</span></td><td>Terapeutas e público geral</td><td><b>R$97</b><br><span style="font-size:.85em;color:var(--cinza)">+ frete</span></td></tr>
+      <tr><td><b>Envelheci, E Daí?</b></td><td>50+, familiares, geriatria</td><td><b>R$79,90</b><br><span style="font-size:.85em;color:var(--cinza)">+ frete</span></td></tr>
+    </table>
+
+    <h3>11.2 Livros digitais</h3>
+    <table>
+      <tr><th>Livro</th><th>À vista</th></tr>
+      <tr><td><b>Fundamentos da Virtologia</b> em PDF + aulas DNT + exercícios</td><td><b>R$167</b></td></tr>
+      <tr><td><b>Manual de Desenvolvimento Humano em Virtudes</b> (Digital)</td><td><b>R$140</b></td></tr>
+      <tr><td><b>Guia das Virtudes — versão professor</b> (Digital)</td><td><b>R$97</b></td></tr>
+      <tr><td><b>Sistemas Humanizados: Humanização 2.0</b> (Digital)</td><td><b>R$107</b></td></tr>
+    </table>
+    <p style="font-size:.85rem;color:var(--cinza)">Nem todos os títulos físicos têm versão digital. Se alguém pedir o digital de um título que não está nesta lista, não presuma que existe — confirme antes de responder.</p>
+
+    <h3>11.3 Como responder preço em DM</h3>
+    <ol class="passos">
+      <li><b>Identifique o perfil</b> (Módulo 2) e indique o título que faz sentido para aquela pessoa — a coluna “para quem” existe exatamente para isso.</li>
+      <li><b>Diga o valor exato da tabela</b>, com centavos quando houver. Nada de “em torno de”.</li>
+      <li><b>Informe o frete</b> quando for livro físico: +R$28. Se for o Fundamentos físico, diga que o frete já está incluído — é uma informação que agrada e evita mal-entendido depois.</li>
+      <li><b>Ofereça a alternativa digital</b> quando ela existir e a pessoa demonstrar hesitação com o valor. Não é desconto, é outra versão do produto.</li>
+      <li><b>Nunca invente</b> desconto, cupom, promoção, parcelamento ou prazo de entrega. Se não souber: <em>“deixa eu confirmar essa informação certinha e já te retorno”</em>.</li>
+    </ol>
+    <div class="dica"><b>Antes de mandar o preço, ensine alguma coisa.</b> Vale a regra do Módulo 5: explicação primeiro, valor depois. Uma DM que responde só “R$225 + frete” converte muito menos do que uma que diz para quem é o livro, o que ele desenvolve, e então informa o valor.</div>
+
+    <h3>11.4 Do livro certo à formação certa</h3>
+    <p>Quando alguém pergunta por onde começar, use isto para orientar a conversa na DM:</p>
+    <table>
+      <tr><th>Se a pessoa chegou por…</th><th>O caminho natural é…</th></tr>
+      <tr><td><em>O Novo Eu</em> ou <em>Fundamentos da Virtologia</em></td><td>Pós-graduação em Virtologia</td></tr>
+      <tr><td><em>A Raiz do Crime</em></td><td>Pós-graduação em Criminalidade</td></tr>
+      <tr><td><em>Sistemas Humanizados</em> (público organizacional e institucional)</td><td>MBA em Humanização e certificação SISH</td></tr>
+      <tr><td><em>Os Transtornos à Luz da Virtologia</em> ou <em>A Psique na Tela</em></td><td>Porta de entrada clínica e cultural → pós em Virtologia</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="mod" id="m12">
+  <div class="wrap">
+    <div class="mod-head"><span class="mod-num">12</span><h2>Paleta de cores</h2></div>
+    <p class="lead">Estas são as cores do Instituto. <b>Por enquanto não há onde você aplicá-las</b> — os vídeos seguem o padrão do Módulo 8 e as legendas chegam prontas. Elas ficam registradas aqui porque futuramente pode haver material gráfico para fazer, e nesse dia a paleta já está definida.</p>
+
+    <div class="paleta">
+      <div class="cor" data-hex="#FFFFFF"><div class="amostra" style="background:#FFFFFF;border-bottom:1px solid var(--linha)"><span>#FFFFFF</span></div><div class="info"><b>Branco</b><em>Fundo de tudo</em></div></div>
+      <div class="cor" data-hex="#F4F6F8"><div class="amostra" style="background:#F4F6F8;"><span>#F4F6F8</span></div><div class="info"><b>Cinza muito claro</b><em>Caixas e fundos de destaque</em></div></div>
+      <div class="cor" data-hex="#C7D0DA"><div class="amostra" style="background:#C7D0DA;"><span>#C7D0DA</span></div><div class="info"><b>Cinza-azulado claro</b><em>Bordas e divisórias</em></div></div>
+      <div class="cor" data-hex="#6B7A8C"><div class="amostra claro" style="background:#6B7A8C;"><span>#6B7A8C</span></div><div class="info"><b>Cinza-ardósia</b><em>Legendas, datas, kickers</em></div></div>
+      <div class="cor" data-hex="#050D14"><div class="amostra claro" style="background:#050D14;"><span>#050D14</span></div><div class="info"><b>Quase-preto azulado</b><em>Todo o texto</em></div></div>
+      <div class="cor" data-hex="#2C63C0"><div class="amostra claro" style="background:#2C63C0;"><span>#2C63C0</span></div><div class="info"><b>Azul</b><em>Links, botões — o que é clicável</em></div></div>
+      <div class="cor" data-hex="#234E99"><div class="amostra claro" style="background:#234E99;"><span>#234E99</span></div><div class="info"><b>Azul escuro</b><em>Botão ao passar o mouse</em></div></div>
+      <div class="cor" data-hex="#EAE6F4"><div class="amostra" style="background:#EAE6F4;"><span>#EAE6F4</span></div><div class="info"><b>Lavanda</b><em>Fundo dos blocos destacados</em></div></div>
+      <div class="cor" data-hex="#DCE8FA"><div class="amostra" style="background:#DCE8FA;"><span>#DCE8FA</span></div><div class="info"><b>Azul pastel</b><em>Fundo de destaque alternativo</em></div></div>
+    </div>
+    <p style="font-size:.85rem;color:var(--cinza)">Clique em qualquer cor para copiar o código.</p>
+
+    <h3>12.1 Como a paleta funciona</h3>
+    <ul>
+      <li><b>Branco é o fundo padrão.</b> Não é uma cor entre outras — é a base de tudo.</li>
+      <li><b>Um único texto:</b> o quase-preto azulado. O cinza-ardósia é só para informação secundária — legenda de imagem, data, kicker.</li>
+      <li><b>Azul significa clicável.</b> Se não é link nem botão, não é azul. O azul escuro existe apenas para o estado de mouse sobre o botão.</li>
+      <li><b>Os três fundos claros</b> — cinza muito claro, lavanda e azul pastel — servem para destacar blocos. Escolha um por peça e mantenha; alternar sem critério polui.</li>
+      <li><b>Nenhuma cor fora desta lista.</b> Se precisar de uma que não está aqui, pergunte antes de usar.</li>
+    </ul>
+    <div class="dica"><b>Sobre os vídeos:</b> a paleta <b>não</b> se aplica a legenda queimada nem a headline. Ali vale o padrão do Módulo 8, e ele não muda.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Guia de uso interno · Instituto Virtudes · Para Giulia</div>
+</footer>
+
+<script>
+(function(){
+  document.addEventListener('click',function(e){
+    var a=e.target.closest?e.target.closest('a'):null;
+    if(!a) return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)==='#'){
+      e.preventDefault();
+      var alvo=document.getElementById(href.slice(1));
+      if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'});
+    } else if(/^https?:/i.test(href)){
+      a.setAttribute('target','_blank');
+      a.setAttribute('rel','noopener noreferrer');
+    }
+  },false);
+  var aviso=document.createElement('div');
+  aviso.className='copiado'; aviso.textContent='Código copiado';
+  document.body.appendChild(aviso);
+  document.querySelectorAll('.cor').forEach(function(c){
+    c.addEventListener('click',function(){
+      var hex=c.getAttribute('data-hex');
+      var t=document.createElement('textarea');
+      t.value=hex; t.style.position='fixed'; t.style.opacity='0';
+      document.body.appendChild(t); t.select();
+      try{document.execCommand('copy');}catch(err){}
+      document.body.removeChild(t);
+      aviso.textContent=hex+' copiado';
+      aviso.classList.add('on');
+      setTimeout(function(){aviso.classList.remove('on');},1400);
+    });
+  });
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    a.setAttribute('target','_blank');
+    a.setAttribute('rel','noopener noreferrer');
+  });
+})();
+</script>
+</body>
+</html>
